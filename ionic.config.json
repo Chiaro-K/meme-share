@@ -1,0 +1,8 @@
+{
+  "name": "meme-share",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "13404641"
+}
