@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Logo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header [translucent]="true">
+    <!-- <header></header> -->
+    <ion-toolbar>
+      <ion-title>
+        <ion-segment [scrollable]="true" value="trending">
+          <ion-segment-button value="trending">
+            Trending
+          </ion-segment-button>
+          <ion-segment-button value="new">
+            New Uploads
+          </ion-segment-button>
+          <ion-segment-button value="memes">
+            Memes
+          </ion-segment-button>
+          <ion-segment-button value="clips">
+            Clips
+          </ion-segment-button>
+        </ion-segment>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div [ngSwitch]="contentType">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+          <div class="image-container" [style.background-image]="'url(assets/images/img' + image + '.jpg)'"></div>
+          <small>Meme title</small>
+          <ion-icon class="ellipse" name="ellipsis-horizontal-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

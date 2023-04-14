@@ -1,0 +1,38 @@
+$space: 5px;
+// app-home {
+
+ion-title {
+    padding-inline: 5%;
+    text-align: start;
+}
+
+ion-col {
+    padding-bottom: $space * 4;
+
+    .image-container {
+        background-size: cover;
+        min-height: 200px;
+        border-radius: $space * 3;
+    }
+}
+
+small {
+    margin-left: $space;
+}
+
+.ellipse {
+    float: right;
+    margin-right: $space;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  
+    .card {
+      display: inline-block;
+    }
+  }
+
+// }
