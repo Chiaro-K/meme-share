@@ -4,15 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.page.html',
-  styleUrls: ['./search.page.scss'],
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class SearchPage implements OnInit {
-  contentType = "gifs";
-
+export class ProfilePage implements OnInit {
+  profileMenu = "saved"
   constructor() { }
 
   ngOnInit() {

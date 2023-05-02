@@ -1,0 +1,119 @@
+$spacing: 5px;
+@mixin leftRightPadding {
+  padding: 0 ($spacing * 2) 0 ($spacing * 2);
+}
+// app-search {
+
+#background-content {
+  background: #0e1010;
+}
+.title {
+  display: block;
+  padding-inline: 5%;
+  text-align: start;
+  font-weight: 200;
+  width: 100px;
+  margin: 0 auto;
+}
+
+small {
+  margin-left: $spacing;
+}
+
+.ellipse {
+  float: right;
+  margin-right: $spacing;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .card {
+    display: inline-block;
+  }
+}
+
+ion-content {
+  padding: 10px;
+  span {
+    display: block;
+  }
+}
+
+ion-col {
+  padding-bottom: $spacing * 4;
+
+  .image-container {
+    background-size: cover;
+    min-height: 200px;
+    border-radius: $spacing;
+  }
+}
+
+small {
+  margin-left: $spacing;
+}
+
+.ellipse {
+  float: right;
+  margin-right: $spacing;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .card {
+    display: inline-block;
+  }
+}
+
+.quick-search,
+.most-popular,
+.recent-search {
+  @include leftRightPadding();
+}
+
+.trending-search {
+  font-weight: 500;
+}
+
+.searches {
+  ion-badge {
+    padding: ($spacing * 2);
+    border-radius: 20px;
+    margin-right: $spacing;
+  }
+}
+
+.most-popular {
+  ion-grid {
+    padding: 0;
+  }
+}
+
+ion-toolbar.search-types {
+  --min-height: 40px;
+}
+ion-segment {
+  ion-segment-button {
+    min-height: 45px;
+    --indicator-box-shadow: transparent !important;
+    --background: white;
+    --color: #2d2e87;
+    text-transform: capitalize;
+    --background-checked: linear-gradient(
+      to right,
+      #340002,
+      #0083cb
+    ) !important;
+    --color-checked: white;
+    border-radius: 3rem !important;
+    margin: 0;
+  }
+}
+
+// }
