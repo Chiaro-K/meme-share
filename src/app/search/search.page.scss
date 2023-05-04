@@ -12,27 +12,8 @@ $spacing: 5px;
   padding-inline: 5%;
   text-align: start;
   font-weight: 200;
-  width: 100px;
+  width: 120px;
   margin: 0 auto;
-}
-
-small {
-  margin-left: $spacing;
-}
-
-.ellipse {
-  float: right;
-  margin-right: $spacing;
-}
-
-.scrolling-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-
-  .card {
-    display: inline-block;
-  }
 }
 
 ion-content {
@@ -52,25 +33,6 @@ ion-col {
   }
 }
 
-small {
-  margin-left: $spacing;
-}
-
-.ellipse {
-  float: right;
-  margin-right: $spacing;
-}
-
-.scrolling-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-
-  .card {
-    display: inline-block;
-  }
-}
-
 .quick-search,
 .most-popular,
 .recent-search {
@@ -78,7 +40,14 @@ small {
 }
 
 .trending-search {
-  font-weight: 500;
+  font-weight: bold;
+
+  span {
+    margin-bottom: $spacing;
+  }
+  ion-icon {
+    margin-right: $spacing;
+  }
 }
 
 .searches {

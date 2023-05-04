@@ -1,3 +1,5 @@
+$spacing: 5px;
+
 .header {
   background-color: #2196f3;
   height: 180px;
@@ -73,4 +75,33 @@ i {
 ion-segment-button {
   --indicator-color: transparent !important;
   --indicator-color-checked: transparent !important;
+  font-weight: 800;
+}
+
+ion-col {
+  padding: 1px;
+  .saved-container {
+    background-size: cover;
+    min-height: 350px;
+    position: relative;
+  }
+  .image-container {
+    background-size: cover;
+    min-height: 150px;
+    position: relative;
+
+    .bottom-left {
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+      color: antiquewhite;
+      font-weight: bolder;
+
+      ion-icon {
+        font-size: 23px;
+        margin-bottom: -6px;
+        margin-right: 5px;
+      }
+    }
+  }
 }

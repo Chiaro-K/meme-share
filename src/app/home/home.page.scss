@@ -52,6 +52,14 @@ ion-segment {
 
 ion-col {
   padding-bottom: $spacing * 4;
+  small {
+    margin-left: $spacing;
+  }
+
+  .ellipse {
+    float: right;
+    margin-right: $spacing;
+  }
 
   .image-container {
     background-size: cover;
@@ -59,23 +67,3 @@ ion-col {
     border-radius: $spacing;
   }
 }
-
-small {
-  margin-left: $spacing;
-}
-
-.ellipse {
-  float: right;
-  margin-right: $spacing;
-}
-
-.scrolling-wrapper {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-
-  .card {
-    display: inline-block;
-  }
-}
-// }

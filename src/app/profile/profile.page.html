@@ -28,10 +28,36 @@
 <ion-content>
   <ion-toolbar class="search-types">
     <ion-title>
-      <ion-segment [(ngModel)]="profileMenu" [scrollable]="true" value="saved">
+      <ion-segment [(ngModel)]="contentType" [scrollable]="true" value="saved">
         <ion-segment-button value="saved"> Saved </ion-segment-button>
         <ion-segment-button value="uploads"> Uploads </ion-segment-button>
       </ion-segment>
     </ion-title>
   </ion-toolbar>
+  <div [ngSwitch]="contentType">
+    <ion-grid *ngSwitchCase="'saved'">
+      <ion-row>
+        <ion-col size="12" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+          <div
+            class="saved-container"
+            [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
+          ></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngSwitchCase="'uploads'">
+      <ion-row>
+        <ion-col size="4" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+          <div
+            class="image-container"
+            [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
+          >
+            <div class="bottom-left">
+              <ion-icon name="eye"></ion-icon><strong>100</strong>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

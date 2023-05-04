@@ -18,4 +18,8 @@ export class HomePage implements OnInit {
   ngOnInit() {
   }
 
+  randomHeight(){
+    Math.floor(50 + Math.random()*(200 - 50 + 1))
+  }
+
 }

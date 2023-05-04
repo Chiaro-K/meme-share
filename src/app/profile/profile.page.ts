@@ -11,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class ProfilePage implements OnInit {
-  profileMenu = "saved"
+  contentType = "saved"
   constructor() { }
 
   ngOnInit() {
