@@ -1,15 +1,27 @@
 $spacing: 5px;
 
 .header {
-  background-color: #2196f3;
-  height: 180px;
-  padding-top: 1px;
-
-  h2 {
-    color: white;
-    font-weight: bold;
-    text-align: center;
+  .top {
+    background-color: #2196f3;
+    height: 75px;
+    padding-top: 1px;
+    color: antiquewhite;
+    ion-buttons {
+      float: left;
+    }
   }
+  span {
+    width: 240px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    font-size: 26px;
+    margin-top: 10px;
+  }
+}
+
+ion-list ion-label {
+  font-weight: bolder;
 }
 
 .space-between {
@@ -51,27 +63,6 @@ $spacing: 5px;
   margin-top: -76px;
 }
 
-.tweet {
-  margin-top: -10px;
-
-  ion-label {
-    line-height: 1 !important;
-    font-size: 15px;
-    margin: 6px 0px 6px 0px !important;
-    min-height: 34px;
-  }
-}
-
-.tweet-img {
-  width: 95%;
-  margin-left: 2.5%;
-  border-radius: 10px;
-}
-i {
-  color: #2196f3;
-  font-weight: 800;
-}
-
 ion-segment-button {
   --indicator-color: transparent !important;
   --indicator-color-checked: transparent !important;
@@ -104,4 +95,9 @@ ion-col {
       }
     }
   }
+}
+
+#profile-saved-content,
+#profile-uploads-content {
+  padding: 0;
 }

@@ -1,4 +1,5 @@
 $spacing: 5px;
+$white: antiquewhite;
 // app-home {
 // background-color: red;
 
@@ -8,21 +9,39 @@ ion-segment::-webkit-scrollbar {
 ion-title {
   padding-inline: 5%;
   text-align: start;
-  .logo {
-    font-weight: bolder;
-    ion-icon {
-      font-size: 25px;
-      margin-bottom: -6px;
+  .logo-title {
+    padding: 10px 0 15px 0;
+
+    .logo {
+      font-weight: bolder;
+      ion-icon {
+        font-size: 20px;
+        margin-bottom: -6px;
+        border-radius: 20px;
+        padding: 6px;
+        background: rgb(131, 58, 180);
+        background: linear-gradient(
+          90deg,
+          rgba(131, 58, 180, 1) 0%,
+          rgba(106, 29, 253, 1) 50%,
+          rgba(252, 176, 69, 1) 100%
+        );
+        color: $white;
+      }
+      label {
+        font-family: "Righteous", cursive;
+      }
     }
-  }
-  .create {
-    font-weight: 200;
-    float: right;
-    font-size: $spacing * 3;
-    margin-top: $spacing;
-    ion-icon {
-      font-size: $spacing * 4;
-      margin-bottom: -6px;
+
+    .create {
+      font-weight: bolder;
+      float: right;
+      font-size: $spacing * 3;
+      margin-top: $spacing * 3;
+      ion-icon {
+        font-size: $spacing * 4;
+        margin-bottom: -6px;
+      }
     }
   }
 }
@@ -36,7 +55,7 @@ ion-segment {
     height: 40px;
     min-height: 40px;
     --indicator-box-shadow: transparent !important;
-    --background: white;
+    --background: transparent;
     --color: #2d2e87;
     text-transform: capitalize;
     --background-checked: linear-gradient(

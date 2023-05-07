@@ -1,63 +1,99 @@
-<ion-header>
-  <div class="header">
-    <h2>Idris Elba</h2>
-
-    <div class="space-between">
-      <div class="followings">
-        <ion-badge color="primary" mode="ios">42</ion-badge>
-        <p>Followers</p>
-      </div>
-
-      <div class="followings">
-        <ion-badge color="primary" mode="ios">102</ion-badge>
-        <p>Following</p>
-      </div>
-    </div>
-  </div>
-  <div class="flex">
-    <div class="border-blue">
-      <div class="border-white">
-        <div class="img-box">
-          <img src="../../assets/images/idris.jpeg" />
+<ion-menu contentId="main-content" id="menu-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Idris Elba</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>Profile</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-icon name="settings-outline" slot="start"></ion-icon>
+        <ion-label>Settings</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        <ion-label style="color: #e00404">Log Out</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <div class="header">
+        <div class="top">
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <span>Idris Elba</span>
         </div>
-      </div>
-    </div>
-  </div>
-</ion-header>
+        <div class="top">
+          <div class="space-between">
+            <div class="followings">
+              <ion-badge color="primary" mode="ios">10</ion-badge>
+              <p>Uploads</p>
+            </div>
 
-<ion-content>
-  <ion-toolbar class="search-types">
-    <ion-title>
-      <ion-segment [(ngModel)]="contentType" [scrollable]="true" value="saved">
-        <ion-segment-button value="saved"> Saved </ion-segment-button>
-        <ion-segment-button value="uploads"> Uploads </ion-segment-button>
-      </ion-segment>
-    </ion-title>
-  </ion-toolbar>
-  <div [ngSwitch]="contentType">
-    <ion-grid *ngSwitchCase="'saved'">
-      <ion-row>
-        <ion-col size="12" *ngFor="let image of [1,2,3,4,5,6,1,1]">
-          <div
-            class="saved-container"
-            [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
-          ></div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <ion-grid *ngSwitchCase="'uploads'">
-      <ion-row>
-        <ion-col size="4" *ngFor="let image of [1,2,3,4,5,6,1,1]">
-          <div
-            class="image-container"
-            [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
-          >
-            <div class="bottom-left">
-              <ion-icon name="eye"></ion-icon><strong>100</strong>
+            <div class="followings">
+              <ion-badge color="primary" mode="ios">102</ion-badge>
+              <p>Views</p>
             </div>
           </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-</ion-content>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="border-blue">
+          <div class="border-white">
+            <div class="img-box">
+              <img src="../../assets/images/idris.jpeg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-toolbar>
+    <ion-toolbar class="search-types">
+      <ion-title>
+        <ion-segment
+          [(ngModel)]="contentType"
+          [scrollable]="true"
+          value="saved"
+        >
+          <ion-segment-button value="saved"> Saved </ion-segment-button>
+          <ion-segment-button value="uploads"> Uploads </ion-segment-button>
+        </ion-segment>
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <div [ngSwitch]="contentType">
+      <ion-grid *ngSwitchCase="'saved'" id="profile-saved-content">
+        <ion-row>
+          <ion-col size="12" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+            <div
+              class="saved-container"
+              [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
+            ></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngSwitchCase="'uploads'" id="profile-uploads-content">
+        <ion-row>
+          <ion-col size="4" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+            <div
+              class="image-container"
+              [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
+            >
+              <div class="bottom-left">
+                <ion-icon name="eye"></ion-icon><strong>100</strong>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-content>
+</div>

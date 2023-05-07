@@ -11,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class SearchPage implements OnInit {
-  contentType = "gifs";
+  contentType = "images";
 
   constructor() { }
 
