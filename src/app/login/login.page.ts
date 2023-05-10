@@ -4,21 +4,17 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class HomePage implements OnInit {
-  contentType = "trending";
+export class LoginPage implements OnInit {
+
   constructor() { }
 
   ngOnInit() {
-  }
-
-  randomHeight(){
-    Math.floor(50 + Math.random()*(200 - 50 + 1))
   }
 
 }

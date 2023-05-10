@@ -1,8 +1,15 @@
 $spacing: 5px;
 
 .header {
-  .top {
-    background-color: #2196f3;
+  .top,
+  .bottom {
+    background: rgb(131, 58, 180);
+    background: linear-gradient(
+      90deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgba(106, 29, 253, 1) 50%,
+      rgba(252, 176, 69, 1) 100%
+    );
     height: 75px;
     padding-top: 1px;
     color: antiquewhite;
@@ -66,6 +73,7 @@ ion-list ion-label {
 ion-segment-button {
   --indicator-color: transparent !important;
   --indicator-color-checked: transparent !important;
+  --color-checked: rgb(253 29 29);
   font-weight: 800;
 }
 
