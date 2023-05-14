@@ -4,7 +4,8 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
-  },  {
+  },
+  {
     path: 'home',
     loadComponent: () => import('./home/home.page').then( m => m.HomePage)
   },
@@ -17,12 +18,12 @@ export const routes: Routes = [
     loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
   },
   {
-    path: 'registration',
-    loadComponent: () => import('./registration/registration.page').then( m => m.RegistrationPage)
+    path: 'signup',
+    loadComponent: () => import('./user/signup/signup.page').then( m => m.SignupPage)
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.page').then( m => m.LoginPage)
+    loadComponent: () => import('./user/login/login.page').then( m => m.LoginPage)
   },
 
 ];
