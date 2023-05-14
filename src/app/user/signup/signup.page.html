@@ -4,8 +4,8 @@
       <h1>Z'thombe</h1>
       <small>Hilarious African Memes</small>
     </header>
-    </ion-toolbar>
-    <ion-toolbar>
+  </ion-toolbar>
+  <ion-toolbar>
     <ion-segment [(ngModel)]="contentType" [scrollable]="true" value="trending">
       <ion-segment-button value="login"> Log In </ion-segment-button>
       <ion-segment-button value="signup"> Sign Up </ion-segment-button>
@@ -15,16 +15,26 @@
 
 <ion-content [fullscreen]="true" class="bg-color" [ngSwitch]="contentType">
   <ion-card>
-    <form>
+    <form [formGroup]="ValidationFormUser">
       <ion-card-content>
         <div class="login" *ngSwitchCase="'login'">
           <ion-item>
-            <ion-input name="username" type="text" placeholder="Username">
-              <ion-icon name="at-outline"></ion-icon>
+            <ion-input
+              name="email"
+              type="text"
+              placeholder="email"
+              formControlName="email"
+            >
+              <ion-icon name="mail-outline"></ion-icon>
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input name="password" type="password" placeholder="Password">
+            <ion-input
+              name="password"
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            >
               <ion-icon name="lock-closed"></ion-icon>
             </ion-input>
           </ion-item>
@@ -53,16 +63,25 @@
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input name="confirmPassword" type="password" placeholder="Confirm password">
+            <ion-input
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm password"
+            >
               <ion-icon name="lock-closed"></ion-icon>
             </ion-input>
           </ion-item>
-
         </div>
         <div class="confirm-signin">
           <div class="sign-btn-wrap">
-            <ion-button (click)="login()" shape="round" type="submit" fill="solid" class="sign-btn">{{contentType==='login' ? 'Log In' :
-              'Sign Up'}}</ion-button>
+            <ion-button
+              (click)="login()"
+              shape="round"
+              type="submit"
+              fill="solid"
+              class="sign-btn"
+              >{{contentType==='login' ? 'Log In' : 'Sign Up'}}</ion-button
+            >
           </div>
 
           <div class="text-tag">
