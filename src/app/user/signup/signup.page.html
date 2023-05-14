@@ -80,8 +80,17 @@
               type="submit"
               fill="solid"
               class="sign-btn"
-              >{{contentType==='login' ? 'Log In' : 'Sign Up'}}</ion-button
+              *ngIf="!loading"
+              >{{ contentType==='login' ? 'Log In' : 'Sign Up'}}</ion-button
             >
+            <ion-button
+              shape="round"
+              fill="solid"
+              class="sign-btn-loading"
+              *ngIf="loading"
+            >
+              <ion-spinner name="crescent"></ion-spinner>
+            </ion-button>
           </div>
 
           <div class="text-tag">

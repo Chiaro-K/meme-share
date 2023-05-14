@@ -47,7 +47,14 @@ export class FirebaseService {
         });
       })
       .catch((error) => {
-        window.alert(error.message);
+        switch (error['code']) {
+          case 'auth/user-not-found':
+            return 'User not found!';
+          case 'auth/invalid-email':
+            return 'Email not formated correctly!';
+          default:
+            return 'There a problem logging you in.';
+        }
       });
   }
 
