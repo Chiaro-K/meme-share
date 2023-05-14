@@ -27,6 +27,7 @@ export class SignupPage implements OnInit {
 
   contentType = 'login';
   showPassword = false;
+  loading = false;
 
   validationMessages = {
     username: [{ type: 'required', message: 'Please Enter your Full Names' }],
@@ -59,7 +60,6 @@ export class SignupPage implements OnInit {
       Validators.compose([Validators.required, Validators.minLength(6)])
     ),
   });
-  loading: any;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -67,17 +67,29 @@ export class SignupPage implements OnInit {
     private alertCtrl: AlertController,
     private animationCtrl: AnimationController,
     private auth: FirebaseService
-  ) {
-    this.loading = this.loadingCtrl;
-  }
+  ) {}
 
   ngOnInit() {}
+
   login() {
     console.log('LOGGIN IN!');
     const userForm = this.ValidationFormUser.value;
     console.log('USERFORM: ', userForm);
-    if (userForm.email && userForm.password)
-      this.auth.SignIn(userForm.email, userForm.password);
+    if (userForm.email && userForm.password) this.loading = true;
+    this.auth
+      .SignIn(userForm.email, userForm.password)
+      .then(async (res) => {
+        console.log('RES', res);
+        const alert = await this.alertCtrl.create({
+          header: 'Alert',
+          message: res || '',
+          buttons: ['OK'],
+        });
+        await alert.present();
+
+        this.loading = false;
+      })
+      .catch((err) => {});
   }
 
   toggleShow() {
