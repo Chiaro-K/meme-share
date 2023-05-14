@@ -9,17 +9,10 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import {
-  AlertController,
-  NavController,
-  LoadingController,
-} from '@ionic/angular';
-import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 import { Animation, AnimationController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/firebase/firebase.service';
-
-import { doc, Firestore, getDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-signup',
@@ -69,14 +62,11 @@ export class SignupPage implements OnInit {
   loading: any;
 
   constructor(
-    private router: Router,
-    private navCtr: NavController,
     private formbuilder: FormBuilder,
     public loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private animationCtrl: AnimationController,
-    private auth: FirebaseService,
-    private firestore: Firestore
+    private auth: FirebaseService
   ) {
     this.loading = this.loadingCtrl;
   }
@@ -84,7 +74,6 @@ export class SignupPage implements OnInit {
   ngOnInit() {}
   login() {
     console.log('LOGGIN IN!');
-    //this.navCtr.navigateForward('tabs/profile');
     const userForm = this.ValidationFormUser.value;
     console.log('USERFORM: ', userForm);
     if (userForm.email && userForm.password)

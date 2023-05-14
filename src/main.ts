@@ -11,7 +11,6 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { AuthService } from './app/services/auth.service';
-import { AngularFireModule } from '@angular/fire/compat';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
