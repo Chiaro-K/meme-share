@@ -7,6 +7,8 @@ import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms'
 import {AlertController, NavController,LoadingController} from '@ionic/angular'
 import {Router} from '@angular/router';
 
+import { Animation, AnimationController } from '@ionic/angular';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.page.html',
@@ -15,6 +17,8 @@ import {Router} from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class SignupPage implements OnInit {
+    contentType="login";
+
      validationMessages = {
       names: [{type:"required", message:"Please Enter your Full Names"}],
       phone: [{type:"required", message:"Please Enter your Phone No."}],
@@ -32,7 +36,7 @@ export class SignupPage implements OnInit {
    loading:any;
 
 constructor(private router: Router,
-     private navCtr: NavController ,private formbuilder:FormBuilder, public loadingCtrl : LoadingController, private alertCtrl: AlertController){
+     private navCtr: NavController ,private formbuilder:FormBuilder, public loadingCtrl : LoadingController, private alertCtrl: AlertController, private animationCtrl: AnimationController){
     this.loading = this.loadingCtrl
    }
 
@@ -57,5 +61,7 @@ constructor(private router: Router,
 
   })
   }
-
+  login() {
+    this.navCtr.navigateForward('tabs/profile');
+  }
 }

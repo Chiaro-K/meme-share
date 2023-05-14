@@ -24,3 +24,24 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+ion-segment:not(.profileSegment) {
+    ion-segment-button {
+      height: 40px;
+      min-height: 40px;
+      --indicator-box-shadow: transparent !important;
+      --background: transparent;
+      --color: #2d2e87;
+      text-transform: capitalize;
+      --background-checked: linear-gradient(
+        to right,
+        #340002,
+        #0083cb
+      ) !important;
+      --color-checked: white;
+      --indicator-color: transparent !important;
+      --indicator-color-checked: transparent !important;
+      border-radius: 3rem !important;
+      margin: 0;
+    }
+  }

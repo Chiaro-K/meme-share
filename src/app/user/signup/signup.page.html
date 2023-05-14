@@ -1,83 +1,85 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <!-- <ion-title>signup</ion-title> -->
-    <ion-buttons slot="start">
-      <ion-back-button defaulthref="login" text=""> </ion-back-button>
-    </ion-buttons>
+    <header>
+      <h1>Z'thombe</h1>
+      <small>Hilarious African Memes</small>
+    </header>
+    </ion-toolbar>
+    <ion-toolbar>
+    <ion-segment [(ngModel)]="contentType" [scrollable]="true" value="trending">
+      <ion-segment-button value="login"> Log In </ion-segment-button>
+      <ion-segment-button value="signup"> Sign Up </ion-segment-button>
+    </ion-segment>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-color">
-  <ion-card class="ion-no-margin">
-    <ion-card-header>
-      <ion-card-title> Sign Up </ion-card-title>
-      <ion-card-subtitle>
-        Create Your account by filling up the form
-      </ion-card-subtitle>
-    </ion-card-header>
+<ion-content [fullscreen]="true" class="bg-color" [ngSwitch]="contentType">
+  <ion-card>
     <form>
       <ion-card-content>
-        <ion-item>
-          <ion-input
-            name="names"
-            type="text"
-            placeholder="FullName"
-            formControlName="names"
-          >
-            <ion-icon name="person-outline"></ion-icon>
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            name="phone"
-            type="text"
-            placeholder="Phone No."
-            formControlName="phone"
-          >
-            <ion-icon name="call-outline"></ion-icon>
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            name="email"
-            type="text"
-            placeholder="Email"
-            formControlName="email"
-          >
-            <ion-icon name="mail-outline"></ion-icon>
-          </ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input
-            name="password"
-            type="password"
-            placeholder="************"
-            formControlName="password"
-          >
-            <ion-icon name="lock-closed"></ion-icon>
-          </ion-input>
-        </ion-item>
-        <div class="sign-btn-wrap">
-          <ion-button shape="round" type="submit" fill="solid" class="sign-btn"
-            >Sign Up</ion-button
-          >
+        <div class="login" *ngSwitchCase="'login'">
+          <ion-item>
+            <ion-input name="username" type="text" placeholder="Username">
+              <ion-icon name="at-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="password" type="password" placeholder="Password">
+              <ion-icon name="lock-closed"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <small><a>Forgot Password?</a></small>
         </div>
 
-        <div class="text-tag">
-          <span>Sign Up with</span>
-        </div>
+        <div class="signup" *ngSwitchCase="'signup'">
+          <ion-item>
+            <ion-input name="names" type="text" placeholder="FullName">
+              <ion-icon name="person-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="username" type="text" placeholder="Username">
+              <ion-icon name="at-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="email" type="text" placeholder="Email">
+              <ion-icon name="mail-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="password" type="password" placeholder="Password">
+              <ion-icon name="lock-closed"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="confirmPassword" type="password" placeholder="Confirm password">
+              <ion-icon name="lock-closed"></ion-icon>
+            </ion-input>
+          </ion-item>
 
-        <!-- <div class="social-btns">
-          <ion-button fill="clear" class="facebookbtn ion-no-padding">
-            <ion-img src="assets/images/facebook.png"></ion-img>
-          </ion-button>
-          <ion-button fill="clear" class="googlebtn ion-no-padding">
-            <ion-img src="assets/images/google.png"></ion-img>
-          </ion-button>
-          <ion-button fill="clear" class="applebtn ion-no-padding">
-            <ion-img src="assets/images/apple.png"></ion-img>
-          </ion-button>
-        </div> -->
+        </div>
+        <div class="confirm-signin">
+          <div class="sign-btn-wrap">
+            <ion-button (click)="login()" shape="round" type="submit" fill="solid" class="sign-btn">{{contentType==='login' ? 'Log In' :
+              'Sign Up'}}</ion-button>
+          </div>
+
+          <div class="text-tag">
+            <span>Sign In using</span>
+          </div>
+          <div class="social-btns">
+            <ion-button fill="clear" class="facebookbtn ion-no-padding">
+              <ion-img src="assets/images/facebook.png"></ion-img>
+            </ion-button>
+            <ion-button fill="clear" class="googlebtn ion-no-padding">
+              <ion-img src="assets/images/google.png"></ion-img>
+            </ion-button>
+            <ion-button fill="clear" class="applebtn ion-no-padding">
+              <ion-img src="assets/images/apple.png"></ion-img>
+            </ion-button>
+          </div>
+        </div>
       </ion-card-content>
     </form>
   </ion-card>

@@ -14,16 +14,11 @@ export const routes: Routes = [
     loadComponent: () => import('./search/search.page').then( m => m.SearchPage)
   },
   {
-    path: 'profile',
+    path: 'tabs/profile',
     loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
   },
   {
     path: 'signup',
     loadComponent: () => import('./user/signup/signup.page').then( m => m.SignupPage)
   },
-  {
-    path: 'login',
-    loadComponent: () => import('./user/login/login.page').then( m => m.LoginPage)
-  },
-
 ];

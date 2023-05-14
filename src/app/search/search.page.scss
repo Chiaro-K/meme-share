@@ -34,7 +34,6 @@ ion-col {
 }
 
 .quick-search,
-.most-popular,
 .recent-search {
   @include leftRightPadding();
 }
@@ -59,6 +58,9 @@ ion-col {
 }
 
 .most-popular {
+  h6{
+    margin-left: $spacing * 2;
+  }
   ion-grid {
     padding: 0;
   }
@@ -66,23 +68,6 @@ ion-col {
 
 ion-toolbar.search-types {
   --min-height: 40px;
-}
-ion-segment {
-  ion-segment-button {
-    min-height: 45px;
-    --indicator-box-shadow: transparent !important;
-    --background: white;
-    --color: #2d2e87;
-    text-transform: capitalize;
-    --background-checked: linear-gradient(
-      to right,
-      #340002,
-      #0083cb
-    ) !important;
-    --color-checked: white;
-    border-radius: 3rem !important;
-    margin: 0;
-  }
 }
 
 .grid {

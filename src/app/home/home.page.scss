@@ -50,25 +50,6 @@ ion-toolbar {
   --min-height: 40px;
 }
 
-ion-segment {
-  ion-segment-button {
-    height: 40px;
-    min-height: 40px;
-    --indicator-box-shadow: transparent !important;
-    --background: transparent;
-    --color: #2d2e87;
-    text-transform: capitalize;
-    --background-checked: linear-gradient(
-      to right,
-      #340002,
-      #0083cb
-    ) !important;
-    --color-checked: white;
-    border-radius: 3rem !important;
-    margin: 0;
-  }
-}
-
 ion-col {
   padding-bottom: $spacing * 4;
   small {
