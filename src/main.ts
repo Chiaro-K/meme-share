@@ -14,9 +14,9 @@ import { AuthService } from './app/services/auth.service';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
-if (environment.production) {
-  enableProdMode();
-}
+// if (environment.production) {
+//   enableProdMode();
+// }
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -29,7 +29,6 @@ bootstrapApplication(AppComponent, {
       IonicModule.forRoot({}),
       provideFirebaseApp(() => initializeApp(environment.firebase)),
       provideFirestore(() => getFirestore())
-      //AngularFireModule.initializeApp(environment.firebase)
     ),
     provideRouter(routes),
     AuthService,
