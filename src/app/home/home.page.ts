@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { PostService } from '../services/posts/postService';
+import { PostType } from '../models/PostTypes';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +15,14 @@ import { IonicModule } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   contentType = "trending";
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
   }
 
-  randomHeight(){
-    Math.floor(50 + Math.random()*(200 - 50 + 1))
+  getPosts() {
+    const userId = 'D407A68B-85FF-4AAA-9F93-0F1784D810EC';
+    this.postService.getPosts(userId, PostType.memes).pipe(
+      map(results => results));
   }
-
 }
