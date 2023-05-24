@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { PostType } from 'src/app/models/PostTypes';
 
 // Typescript custom enum for search types (optional)

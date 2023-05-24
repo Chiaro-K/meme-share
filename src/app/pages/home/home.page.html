@@ -32,12 +32,12 @@
 <ion-content [fullscreen]="true" [ngSwitch]="contentType">
   <ion-grid *ngSwitchCase="'trending'">
     <ion-row>
-      <ion-col size="6" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+      <ion-col size="6" *ngFor="let post of posts">
         <div
           class="image-container"
-          [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
+          [style.background-image]="'url(' + post.imageUrl + ')'"
         ></div>
-        <small>Meme title</small>
+        <small>{{post.title}}</small>
         <ion-icon class="ellipse" name="ellipsis-horizontal-outline"></ion-icon>
       </ion-col>
     </ion-row>

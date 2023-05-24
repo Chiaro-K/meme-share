@@ -13,6 +13,7 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { AuthService } from './app/services/auth.service';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { PostService2 } from './app/services/posts/postService2';
 
 // if (environment.production) {
 //   enableProdMode();
@@ -32,5 +33,6 @@ bootstrapApplication(AppComponent, {
     ),
     provideRouter(routes),
     AuthService,
+    PostService2
   ],
 });

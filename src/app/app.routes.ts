@@ -7,18 +7,18 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then( m => m.HomePage)
+    loadComponent: () => import('./pages/home/home.page').then( m => m.HomePage)
   },
   {
     path: 'search',
-    loadComponent: () => import('./search/search.page').then( m => m.SearchPage)
+    loadComponent: () => import('./pages/search/search.page').then( m => m.SearchPage)
   },
   {
     path: 'tabs/profile',
-    loadComponent: () => import('./profile/profile.page').then( m => m.ProfilePage)
+    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
   },
   {
     path: 'signup',
-    loadComponent: () => import('./user/signup/signup.page').then( m => m.SignupPage)
+    loadComponent: () => import('./pages/user/signup/signup.page').then( m => m.SignupPage)
   },
 ];
