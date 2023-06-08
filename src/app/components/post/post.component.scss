@@ -1,0 +1,47 @@
+$spacing: 10px;
+
+.img-box {
+    height: $spacing * 5;
+    width: $spacing * 5;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.clear-fab {
+    .button-native {
+        background: transparent;
+        box-shadow: none;
+    }
+}
+
+.usr-details,
+.img,
+.info {
+    display: flex;
+}
+
+.usr-details {
+    padding: $spacing;
+}
+
+.info {
+    flex-direction: column;
+    margin-left: 8px;
+    margin-top: $spacing/2;
+
+    label {
+        font-weight: 600;
+    }
+
+    span {
+        color: #919191;
+    }
+}
+
+.img {
+    flex-direction: row;
+}
+
+.postInfo {
+    text-align: center;
+}

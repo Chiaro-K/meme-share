@@ -36,6 +36,7 @@
         <div
           class="image-container"
           [style.background-image]="'url(' + post.imageUrl + ')'"
+          (click)="viewPost(post);"
         ></div>
         <small>{{post.title}}</small>
         <ion-icon class="ellipse" name="ellipsis-horizontal-outline"></ion-icon>

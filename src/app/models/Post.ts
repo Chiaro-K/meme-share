@@ -7,3 +7,10 @@ export interface IPost{
     imageUrl?: string,
     tags?: string,
 }
+
+export const defaultPost: IPost = {
+    postId: "",
+    postType: 0,
+    userId: "",
+    title: ""
+}
