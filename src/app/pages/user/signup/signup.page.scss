@@ -1,0 +1,132 @@
+$space: 5px;
+$gray: #74787e;
+
+ion-content {
+  --ion-background-color: transparent;
+  --ion-item-background: transparent !important;
+}
+
+.bg-color {
+  background: #e1eaf9;
+}
+
+ion-header {
+  position: absolute;
+
+  header {
+    text-align: center;
+    margin-bottom: $space * 2;
+    h1 {
+      font-family: "Righteous", cursive;
+      font-weight: bolder;
+      font-size: $space * 9;
+    }
+  }
+
+  ion-segment {
+    ion-segment-button {
+      height: 55px;
+    }
+  }
+}
+
+ion-toolbar {
+  --ion-background-color: transparent;
+  --opacity: 0;
+}
+
+ion-card {
+  --ion-background-color: transparent;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  margin-top: 150px; //TODO - FIX ION-CONTENT THAT DISPLAYS UNDER ION-HEADER
+}
+
+ion-card-content {
+  padding-top: $space * 6;
+}
+
+ion-item {
+  color: $gray;
+  --border-color: #d4d7db;
+
+  --highlight-color-focused: #215ab7;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --highlight-color-invalid: #215ab7;
+  --highlight-color-valid: #215ab7;
+
+  font-size: 13px;
+
+  ion-input {
+    color: $gray;
+    font-size: 13px;
+
+    ion-icon {
+      padding-right: 6px;
+      font-size: 18px;
+    }
+  }
+
+  ion-input:hover {
+    color: #215ab7;
+  }
+}
+
+.login {
+  a {
+    float: right;
+    margin-top: 10px;
+    color: $gray;
+  }
+}
+
+.sign-btn-wrap {
+  text-align: center;
+  padding-top: 45px;
+
+  .sign-btn,
+  .sign-btn-loading {
+    --ion-primary-color: #215ab7;
+    --background: #215ab7;
+    --background-activated: #e1eaf9;
+    --background-focused: #e1eaf9;
+    --background-hover: #647b9d;
+    color: #f4f6fa;
+    background-color: #215ab7;
+    border-radius: 25px;
+  }
+
+  .sign-btn-loading {
+    background-color: #8ba6d1;
+  }
+}
+
+.text-tag {
+  margin-top: 35px;
+  text-align: center;
+
+  span {
+    font-size: 13px;
+    font-weight: normal;
+    color: #334862;
+  }
+}
+
+.social-btns {
+  margin-top: 18px;
+  font-size: 40px;
+  justify-content: space-around;
+  display: flex;
+
+  ion-button {
+    width: 40px;
+    padding-left: $space !important;
+  }
+}
+
+.error_message {
+  font-size: 6px;
+  font-weight: 200;
+  color: #913e07;
+}

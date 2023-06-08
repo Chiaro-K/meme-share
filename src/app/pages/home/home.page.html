@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <div class="flex logo-title">
+        <span class="logo"
+          ><ion-icon name="image-outline"></ion-icon>&nbsp;<label
+            >Z'thombe</label
+          ></span
+        >
+        <span class="create ion-text-right"
+          >Upload&nbsp;<ion-icon name="cloud-upload-outline"></ion-icon
+        ></span>
+      </div>
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      <ion-segment
+        [(ngModel)]="contentType"
+        [scrollable]="true"
+        value="trending"
+      >
+        <ion-segment-button value="trending"> Trending </ion-segment-button>
+        <ion-segment-button value="new"> New Uploads </ion-segment-button>
+        <ion-segment-button value="memes"> Memes </ion-segment-button>
+        <ion-segment-button value="clips"> Videos </ion-segment-button>
+      </ion-segment>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [ngSwitch]="contentType">
+  <ion-grid *ngSwitchCase="'trending'">
+    <ion-row>
+      <ion-col size="6" *ngFor="let post of posts">
+        <div
+          class="image-container"
+          [style.background-image]="'url(' + post.imageUrl + ')'"
+          (click)="viewPost(post);"
+        ></div>
+        <small>{{post.title}}</small>
+        <ion-icon class="ellipse" name="ellipsis-horizontal-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

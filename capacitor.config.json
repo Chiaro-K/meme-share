@@ -2,5 +2,10 @@
 	"appId": "io.ionic.starter",
 	"appName": "meme-share",
 	"webDir": "www",
-	"bundledWebRuntime": false
+	"bundledWebRuntime": false,
+	"plugins": {
+		"CapacitorHttp": {
+		  "enabled": true
+		}
+	}
 }
