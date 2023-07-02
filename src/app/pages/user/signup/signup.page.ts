@@ -80,12 +80,12 @@ export class SignupPage implements OnInit {
       .SignIn(userForm.email, userForm.password)
       .then(async (res) => {
         console.log('RES', res);
-        const alert = await this.alertCtrl.create({
-          header: 'Alert',
-          message: res || '',
-          buttons: ['OK'],
-        });
-        await alert.present();
+        // const alert = await this.alertCtrl.create({
+        //   header: 'Alert',
+        //   message: res || '',
+        //   buttons: ['OK'],
+        // });
+        // await alert.present();
 
         this.loading = false;
       })

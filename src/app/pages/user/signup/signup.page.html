@@ -15,7 +15,7 @@
 
 <ion-content [fullscreen]="true" class="bg-color" [ngSwitch]="contentType">
   <ion-card>
-    <form [formGroup]="ValidationFormUser">
+    <form [formGroup]="ValidationFormUser" (ngSubmit)="login()">
       <ion-card-content>
         <div class="login" *ngSwitchCase="'login'">
           <ion-item>

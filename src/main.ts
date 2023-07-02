@@ -9,11 +9,16 @@ import { environment } from './environments/environment';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-
-import { AuthService } from './app/services/auth.service';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { PostService } from './app/services/posts/postService';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+
+import { Capacitor } from '@capacitor/core';
+import { indexedDBLocalPersistence, initializeAuth } from 'firebase/auth';
+import { getApp } from 'firebase/app';
+import { AvatarService } from './app/services/avatar.service';
 
 // if (environment.production) {
 //   enableProdMode();
@@ -29,10 +34,21 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       IonicModule.forRoot({}),
       provideFirebaseApp(() => initializeApp(environment.firebase)),
-      provideFirestore(() => getFirestore())
+      provideFirestore(() => getFirestore()),
+      provideStorage(() => getStorage()),
+      provideAuth(() => {
+        // if (Capacitor.isNativePlatform()) {
+        //   return initializeAuth(getApp(), {
+        //     persistence: indexedDBLocalPersistence
+        //   });
+        // } else {
+          return getAuth();
+        // }
+      }),
     ),
     provideRouter(routes),
-    AuthService,
-    PostService
+    PostService,
+    AvatarService,
+    Storage
   ],
 });
