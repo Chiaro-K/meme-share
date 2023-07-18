@@ -1,7 +1,7 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { RouteReuseStrategy, provideRouter } from '@angular/router';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, NavParams } from '@ionic/angular';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
@@ -19,6 +19,7 @@ import { Capacitor } from '@capacitor/core';
 import { indexedDBLocalPersistence, initializeAuth } from 'firebase/auth';
 import { getApp } from 'firebase/app';
 import { AvatarService } from './app/services/avatar.service';
+import { UserService } from './app/services/posts/userService';
 
 // if (environment.production) {
 //   enableProdMode();
@@ -48,7 +49,9 @@ bootstrapApplication(AppComponent, {
     ),
     provideRouter(routes),
     PostService,
+    UserService,
     AvatarService,
-    Storage
+    Storage,
+    NavParams
   ],
 });

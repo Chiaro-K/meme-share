@@ -15,14 +15,20 @@ export class PostService {
     };
 
     return await CapacitorHttp.get(options);
-
-    // or...
-    // const response = await CapacitorHttp.request({ ...options, method: 'GET' })
   }
 
   getPost = async (postId: string) =>{
     const options = {
-      url: `${this.url}Posts/GetPost/${postId}`,
+      url: `${this.url}Posts/${postId}`,
+      //   headers: { 'X-Fake-Header': 'Fake-Value' },
+      //   params: { size: 'XL' },
+    };
+    return await CapacitorHttp.get(options);
+  }
+  
+  getUser = async (userId: string) =>{
+    const options = {
+      url: `${this.url}Users/${userId}`,
       //   headers: { 'X-Fake-Header': 'Fake-Value' },
       //   params: { size: 'XL' },
     };

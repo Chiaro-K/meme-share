@@ -25,15 +25,21 @@ export const routes: Routes = [
   },
   {
     path: 'tabs/profile',
-    loadComponent: () => import('./pages/profile/profile.page').then(m => m.ProfilePage),
-    ...canActivate(redirectLoggedInToHome)
+    loadComponent: () => import('./pages/user/profile/profile.page').then(m => m.ProfilePage),
+    ...canActivate(redirectUnauthorizedToLogin)
     // canActivate: [AuthGuard]
   },
   {
     path: 'signup',
     loadComponent: () => import('./pages/user/signup/signup.page').then(m => m.SignupPage),
+    ...canActivate(redirectLoggedInToHome)
     // canActivate: [AuthGuard]
     // ...canActivate(redirectLoggedInToProfile)
     // , canActivate: [AuthGuard], data: { authGuardPipe: redirectLoggedInToProfile }
+  },
+  {
+    path: 'view-user',
+    loadComponent: () => import('./pages/view-user/view-user.page').then( m => m.ViewUserPage)
   }
+
 ];

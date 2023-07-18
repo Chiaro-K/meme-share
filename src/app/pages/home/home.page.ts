@@ -62,23 +62,6 @@ export class HomePage implements OnInit {
     ]
   }
 
-  // viewPost(post: IPost) {
-  //   this.router.navigate(['/post', { postId: post.postId }])
-  // }
-
-  // async viewPost(post: IPost) {
-  //   const modal = await this.modalCtrl.create({
-  //     component: PostComponent,
-  //   });
-  //   modal.present();
-
-  //   const { data, role } = await modal.onWillDismiss();
-
-  //   // if (role === 'confirm') {
-  //   //   this.message = `Hello, ${data}!`;
-  //   // }
-  // }
-
   public async viewPost(post: IPost): Promise<void> {
     const modal = await this.modalCtrl.create({
       component: PostComponent,
@@ -96,6 +79,32 @@ export class HomePage implements OnInit {
     // const data = await modal.onWillDismiss();
     // console.log(data);
   }
+
+  // async changeImage() {
+	// 	const image = await Camera.getPhoto({
+	// 		quality: 90,
+	// 		allowEditing: false,
+	// 		resultType: CameraResultType.Base64,
+	// 		source: CameraSource.Photos // Camera, Photos or Prompt!
+	// 	});
+
+	// 	if (image) {
+	// 		const loading = await this.loadingController.create();
+	// 		await loading.present();
+
+	// 		const result = await this.avatarService.uploadImage(image);
+	// 		loading.dismiss();
+
+	// 		if (!result) {
+	// 			const alert = await this.alertController.create({
+	// 				header: 'Upload failed',
+	// 				message: 'There was a problem uploading your avatar.',
+	// 				buttons: ['OK']
+	// 			});
+	// 			await alert.present();
+	// 		}
+	// 	}
+  // }
 
   
   enterAnimation = (baseEl: HTMLElement) => {

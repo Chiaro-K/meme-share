@@ -21,6 +21,8 @@ export class AvatarService {
         const path = `uploads/${user!.uid}/profile.webp`;
         const storageRef = ref(this.storage, path);
 
+        console.log("CURENT USER: ", user);
+
         try {
             await uploadString(storageRef, cameraFile.base64String!, 'base64');
 

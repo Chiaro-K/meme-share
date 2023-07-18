@@ -39,4 +39,10 @@ export class PostPage implements OnInit {
       console.log(this.post);
     });
   }
+
+  viewUser() {
+    this.postService.getUser(this.post.userId).then((res: any) => {
+      console.log(res);
+    })
+  }
 }
