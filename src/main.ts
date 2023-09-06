@@ -20,6 +20,7 @@ import { indexedDBLocalPersistence, initializeAuth } from 'firebase/auth';
 import { getApp } from 'firebase/app';
 import { AvatarService } from './app/services/avatar.service';
 import { UserService } from './app/services/posts/userService';
+import { AuthGuard } from './app/services/firebase/auth.guard';
 
 // if (environment.production) {
 //   enableProdMode();
@@ -52,6 +53,7 @@ bootstrapApplication(AppComponent, {
     UserService,
     AvatarService,
     Storage,
-    NavParams
+    NavParams,
+    AuthGuard
   ],
 });
