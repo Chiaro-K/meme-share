@@ -18,7 +18,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { Capacitor } from '@capacitor/core';
 import { indexedDBLocalPersistence, initializeAuth } from 'firebase/auth';
 import { getApp } from 'firebase/app';
-import { AvatarService } from './app/services/avatar.service';
+import { ImageService } from './app/services/image.service';
 import { UserService } from './app/services/posts/userService';
 import { AuthGuard } from './app/services/firebase/auth.guard';
 
@@ -51,7 +51,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     PostService,
     UserService,
-    AvatarService,
+    ImageService,
     Storage,
     NavParams,
     AuthGuard
