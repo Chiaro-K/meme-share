@@ -15,7 +15,7 @@
       </ion-item>
       <ion-item>
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
-        <ion-label style="color: #e00404">Log Out</ion-label>
+        <ion-label style="color: #e00404" (click)="logout()">Log Out</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>
@@ -47,8 +47,11 @@
       <div class="flex">
         <div class="border-blue">
           <div class="border-white">
-            <div class="img-box">
-              <img src="../../assets/images/idris.jpeg" />
+            <div class="img-box" (click)="changeImage()" >
+              <img *ngIf="profile?.imageUrl; else placheolder_avatar;" [src]="profile.imageUrl" />
+              <ng-template #placheolder_avatar>
+                <img src="../../assets/images/idris.jpeg" />
+              </ng-template>
             </div>
           </div>
         </div>

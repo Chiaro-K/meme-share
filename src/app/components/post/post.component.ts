@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IonModal, IonicModule, ModalController, NavController, NavParams } from '@ionic/angular';
 import { AnimationController } from '@ionic/angular';
+import { PostService } from 'src/app/services/posts/postService';
 
 
 @Component({
@@ -15,11 +17,20 @@ import { AnimationController } from '@ionic/angular';
 export class PostComponent implements OnInit {
   post: any;
 
-  constructor(private animationCtrl: AnimationController, public modalCtrl: ModalController, private navParams: NavParams) {
+  constructor(private animationCtrl: AnimationController, public modalCtrl: ModalController, private navParams: NavParams, public router: Router) {
     console.log("LOADED POST COMPONENT");
     this.post = this.navParams.get('post');
 
     console.log(this.post);
+  }
+
+  viewUser() {
+    this.router.navigate(['/view-user'], {
+      queryParams: {
+        userId: this.post.userId,
+        postId: this.post.postId
+      }
+    });
   }
 
   // enterAnimation = (baseEl: HTMLElement) => {

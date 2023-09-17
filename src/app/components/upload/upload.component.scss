@@ -1,0 +1,40 @@
+$spacer: 1rem;
+
+ion-header {
+  ion-toolbar {
+    span {
+      padding: 1rem;
+      top: 6px;
+      position: fixed;
+    }
+    ion-badge {
+      border-radius: $spacer * 2;
+      padding: 0.7rem;
+      display: block;
+      right: 15px;
+      top: 1rem;
+      position: fixed;
+      letter-spacing: 2px;
+    }
+    ion-icon {
+      font-size: 30px;
+      top: 1rem;
+      position: fixed;
+    }
+  }
+}
+
+ion-content {
+  .previewImg {
+    border-radius: $spacer;
+  }
+  ion-item {
+    & > ion-label {
+      margin-top: -15px;
+      color: #afafaf;
+    }
+    ion-input {
+      margin-top: 2rem;
+    }
+  }
+}

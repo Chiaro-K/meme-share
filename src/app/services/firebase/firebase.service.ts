@@ -1,6 +1,6 @@
 import { Injectable, NgZone } from '@angular/core';
 
-import { User } from '../../models/user';
+import { User } from '../../models/User';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import {
@@ -35,17 +35,15 @@ export class FirebaseService {
   }
 
   SignIn(email: string, password: string) {
-    return this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.SetUserData(result.user);
-        this.afAuth.authState.subscribe((user) => {
-          if (user) {
-            console.log('USER: ', user);
-            this.router.navigate(['tabs/profile']);
-          }
-        });
-      })
+    return this.afAuth.signInWithEmailAndPassword(email, password).then((result) => {
+      this.SetUserData(result.user);
+      this.afAuth.authState.subscribe((user) => {
+        if (user) {
+          console.log('USER: ', user);
+          this.router.navigateByUrl('tabs/profile', { replaceUrl: true });
+        }
+      });
+    })
       .catch((error) => {
         switch (error['code']) {
           case 'auth/user-not-found':
@@ -56,6 +54,22 @@ export class FirebaseService {
             return 'There a problem logging you in.';
         }
       });
+  }
+
+  SignUp(email: string, password: string) {
+    return this.afAuth.createUserWithEmailAndPassword(email, password).then((result) => {
+      this.SetUserData(result.user);
+      this.afAuth.authState.subscribe((user) => {
+        if (user) {
+          console.log('USER: ', user);
+          this.router.navigate(['tabs/profile']);
+        }
+      });
+    })
+  }
+
+  logout() {
+    return this.afAuth.signOut();
   }
 
   SetUserData(user: any) {

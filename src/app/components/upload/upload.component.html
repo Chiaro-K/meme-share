@@ -1,0 +1,52 @@
+<ion-header collapse="fade" class="ion-no-border">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col><ion-icon (click)="close()" name="chevron-back-outline"></ion-icon></ion-col>
+        <ion-col style="text-align: center">Upload</ion-col>
+        <ion-col><ion-badge color="tertiary" (click)="createPost()">Post!</ion-badge></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <img
+          class="previewImg"
+          src="data:image/png;base64, {{ post.imageUrl }}"
+          alt="Red dot"
+        />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="uploadForm">
+    <ion-item>
+      <ion-input
+        name="title"
+        type="text"
+        placeholder="Give your meme a title"
+        labelPlacement="floating"
+        [(ngModel)]="post.title"
+
+      >
+        <div slot="label">Title</div>
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        name="description"
+        type="text"
+        placeholder="Tell us more about what's happening here"
+        labelPlacement="floating"
+        [(ngModel)]="post.description"
+      >
+        <div slot="label">Description</div>
+      </ion-input>
+    </ion-item>
+  </div>
+</ion-content>
