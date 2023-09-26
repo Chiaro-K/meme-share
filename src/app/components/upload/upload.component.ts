@@ -62,9 +62,10 @@ export class UploadComponent implements OnInit {
           to_save.media = undefined;
 
           this.postService.createPost(to_save).then((api_res) => {
-            console.log(api_res);
+            console.log('api_res: ', api_res);
             if (api_res.status === 200) {
-              this.router.navigate(['/']);
+              console.log();
+              this.modalCtrl.dismiss();
             } else {
               console.log(api_res);
             }

@@ -36,6 +36,8 @@ import { UploadComponent } from 'src/app/components/upload/upload.component';
 export class HomePage implements OnInit {
   contentType = 'trending';
   posts: IPost[] = [];
+  postTypes: any[] = [];
+
   constructor(
     private postService: PostService,
     public navCtrl: NavController,
@@ -51,38 +53,50 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.getPosts();
+    this.getPostTypes();
+  }
+
+  onSegmentChange(){
+    this.getPosts();
+  }
+
+  getPostTypes() {
+    this.postService.getPostTypes().then((res) => {
+      console.log(res);
+      this.postTypes = res.data;
+    });
   }
 
   getPosts() {
-    console.log("getting posts");
-    this.postService.getAllPosts().then(res => {
-      console.log("res: ", res);
-      
-      this.posts = res.data;
-    });
+    this.postService
+      .getAllPosts(this.capitalize(this.contentType))
+      .then((res) => {
+        console.log('res', res);
+        this.posts = res.data;
+      });
 
-  //   this.posts = [
-  //     {
-  //       postId: 'c17c1350-808e-40ab-bbdd-8362b5a70600',
-  //       userId: 'd407a68b-85ff-4aaa-9f93-0f1784d810ec',
-  //       title: 'Test1',
-  //       description: 'Description blah blah',
-  //       imageUrl:
-  //         'https://repository-images.githubusercontent.com/260096455/47f1b200-8b2e-11ea-8fa1-ab106189aeb0',
-  //       tags: 'dog,meme,puppy',
-  //       postType: 2,
-  //     },
-  //     {
-  //       postId: '6a7ae9eb-76f5-4cc0-968c-2209c6c928f9',
-  //       userId: 'd407a68b-85ff-4aaa-9f93-0f1784d810ec',
-  //       title: 'Test2',
-  //       description: 'Another Description blah blah',
-  //       imageUrl:
-  //         'https://www.sheknows.com/wp-content/uploads/2018/08/wtsyliaw0pbyvlspt7mg.jpeg?w=600',
-  //       tags: 'dog,puppy',
-  //       postType: 2,
-  //     },
-  //   ];
+    //   this.posts = [
+    //     {
+    //       postId: 'c17c1350-808e-40ab-bbdd-8362b5a70600',
+    //       userId: 'd407a68b-85ff-4aaa-9f93-0f1784d810ec',
+    //       title: 'Test1',
+    //       description: 'Description blah blah',
+    //       imageUrl:
+    //         'https://repository-images.githubusercontent.com/260096455/47f1b200-8b2e-11ea-8fa1-ab106189aeb0',
+    //       tags: 'dog,meme,puppy',
+    //       postType: 2,
+    //     },
+    //     {
+    //       postId: '6a7ae9eb-76f5-4cc0-968c-2209c6c928f9',
+    //       userId: 'd407a68b-85ff-4aaa-9f93-0f1784d810ec',
+    //       title: 'Test2',
+    //       description: 'Another Description blah blah',
+    //       imageUrl:
+    //         'https://www.sheknows.com/wp-content/uploads/2018/08/wtsyliaw0pbyvlspt7mg.jpeg?w=600',
+    //       tags: 'dog,puppy',
+    //       postType: 2,
+    //     },
+    //   ];
   }
 
   async viewPost(post: IPost): Promise<void> {
@@ -114,6 +128,7 @@ export class HomePage implements OnInit {
     });
 
     if (media) {
+      console.log('media', media);
       const loading = await this.loadingController.create();
       await loading.present();
 
@@ -156,4 +171,11 @@ export class HomePage implements OnInit {
   // leaveAnimation = (baseEl: HTMLElement) => {
   //   return this.enterAnimation(baseEl).direction('reverse');
   // };
+
+  lowerCase(pt: string) {
+    return pt.toLowerCase();
+  }
+  capitalize(pt: string) {
+    return pt.charAt(0).toUpperCase() + pt.slice(1);
+  }
 }

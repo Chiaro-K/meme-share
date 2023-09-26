@@ -3,6 +3,7 @@ import { Photo } from "@capacitor/camera"
 export interface IPost{
     postId: string,
     postType: number,
+    viewCount: number,
     userId: string,
     title: string,
     description?: string,
@@ -31,6 +32,7 @@ export const defaultAddPost: IAddPost = {
 export const defaultPost: IPost = {
     postId: "",
     postType: 0,
+    viewCount: 0,
     userId: "",
     title: ""
 }

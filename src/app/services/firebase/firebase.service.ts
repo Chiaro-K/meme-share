@@ -4,9 +4,15 @@ import { User } from '../../models/User';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import {
+  Firestore,
+  doc,
+  docData,
+} from '@angular/fire/firestore';
+import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
+import { Auth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +24,10 @@ export class FirebaseService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning) { }
+    public ngZone: NgZone, // NgZone service to remove outside scope warning) { }
+    private auth: Auth,
+    private firestore: Firestore
+
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
@@ -32,6 +41,12 @@ export class FirebaseService {
         JSON.parse(localStorage.getItem('user')!);
       }
     });
+  }
+  
+  getUserProfile() {
+    const user = this.auth.currentUser;
+    const userDocRef = doc(this.firestore, `users/${user!.uid}`);
+    return docData(userDocRef, { idField: 'id' });
   }
 
   SignIn(email: string, password: string) {

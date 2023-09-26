@@ -33,12 +33,16 @@
         <div class="bottom">
           <div class="space-between">
             <div class="followings">
-              <ion-badge color="primary" mode="ios">10</ion-badge>
+              <ion-badge color="primary" mode="ios"
+                >{{postCount || 0}}</ion-badge
+              >
               <p>Uploads</p>
             </div>
 
             <div class="followings">
-              <ion-badge color="primary" mode="ios">102</ion-badge>
+              <ion-badge color="primary" mode="ios"
+                >{{postViews || 0}}</ion-badge
+              >
               <p>Views</p>
             </div>
           </div>
@@ -47,10 +51,13 @@
       <div class="flex">
         <div class="border-blue">
           <div class="border-white">
-            <div class="img-box" (click)="changeImage()" >
-              <img *ngIf="profile?.imageUrl; else placheolder_avatar;" [src]="profile.imageUrl" />
+            <div class="img-box" (click)="changeImage()">
+              <img
+                *ngIf="profile?.imageUrl; else placheolder_avatar;"
+                [src]="profile.imageUrl"
+              />
               <ng-template #placheolder_avatar>
-                <img src="../../assets/images/idris.jpeg" />
+                <img src="../../assets/images/user2.png" />
               </ng-template>
             </div>
           </div>
@@ -64,9 +71,10 @@
           [scrollable]="true"
           value="saved"
           class="profileSegment"
+          (ionChange)="onSegmentChange()"
         >
-          <ion-segment-button value="saved"> Saved </ion-segment-button>
           <ion-segment-button value="uploads"> Uploads </ion-segment-button>
+          <ion-segment-button value="saved"> Saved </ion-segment-button>
         </ion-segment>
       </ion-title>
     </ion-toolbar>
@@ -86,10 +94,10 @@
       </ion-grid>
       <ion-grid *ngSwitchCase="'uploads'" id="profile-uploads-content">
         <ion-row>
-          <ion-col size="4" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+          <ion-col size="4" *ngFor="let post of posts">
             <div
               class="image-container"
-              [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
+              [style.background-image]="'url(' + post.imageUrl + ')'"
             >
               <div class="bottom-left">
                 <ion-icon name="eye"></ion-icon><strong>100</strong>

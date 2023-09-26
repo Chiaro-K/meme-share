@@ -50,6 +50,10 @@
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>To add images</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To store images</string>
+	<string>This app requires access to the photo library.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app does not require access to the microphone.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the camera.</string>
 </dict>
 </plist>

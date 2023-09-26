@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
-import { collection, doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
+import {
+  collection,
+  doc,
+  docData,
+  Firestore,
+  setDoc,
+} from '@angular/fire/firestore';
 import {
   getDownloadURL,
   ref,
@@ -27,11 +33,33 @@ export class ImageService {
   }
 
   async uploadImage(cameraFile: Photo, imageType: 'avatar' | 'post') {
+    console.log(cameraFile);
+
     const user = this.auth.currentUser;
     const generatedId = uuidv4();
 
+    let parentPath = '';
+
+    switch (cameraFile.format.toUpperCase()) {
+      case 'JPEG':
+      case 'PNG':
+      case 'BMP':
+        {
+          parentPath = 'images';
+        }
+        break;
+      case 'GIF':
+        parentPath = 'gifs';
+        break;
+      case 'MP4':
+      case 'WEBM':
+        parentPath = 'videos';
+        break;
+    }
     const path =
-      imageType === 'avatar' ? `avatars/${user!.uid}/profile.webp` : `uploads/${generatedId}.${cameraFile.format}`;
+      imageType === 'avatar'
+        ? `avatars/${user!.uid}/profile.webp`
+        : `uploads/${generatedId}.${cameraFile.format}`;
 
     const storageRef = ref(this.storage, path);
 
@@ -41,7 +69,7 @@ export class ImageService {
       await uploadString(storageRef, cameraFile.base64String!, 'base64');
 
       const imageUrl = await getDownloadURL(storageRef);
-      
+
       if (imageType === 'avatar') {
         const userDocRef = doc(this.firestore, `users/${user!.uid}`);
         await setDoc(userDocRef, {

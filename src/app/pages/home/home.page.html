@@ -19,18 +19,16 @@
         [(ngModel)]="contentType"
         [scrollable]="true"
         value="trending"
+        (ionChange)="onSegmentChange()"
       >
-        <ion-segment-button value="trending"> Trending </ion-segment-button>
-        <ion-segment-button value="new"> New Uploads </ion-segment-button>
-        <ion-segment-button value="memes"> Memes </ion-segment-button>
-        <ion-segment-button value="clips"> Videos </ion-segment-button>
+        <ion-segment-button *ngFor="let pt of postTypes" value="{{lowerCase(pt)}}"> {{pt}} </ion-segment-button>
       </ion-segment>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" [ngSwitch]="contentType">
-  <ion-grid *ngSwitchCase="'trending'">
+<ion-content [fullscreen]="true">
+  <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let post of posts">
         <div
