@@ -1,7 +1,7 @@
 <ion-menu contentId="main-content" id="menu-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Idris Elba</ion-title>
+      <ion-title>{{user ? user.firstName : "..."}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -28,7 +28,7 @@
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <span>Idris Elba</span>
+          <span>{{user ? user.username : "..."}}</span>
         </div>
         <div class="bottom">
           <div class="space-between">
@@ -98,9 +98,10 @@
             <div
               class="image-container"
               [style.background-image]="'url(' + post.imageUrl + ')'"
+              (click)="viewPost(post);"
             >
               <div class="bottom-left">
-                <ion-icon name="eye"></ion-icon><strong>100</strong>
+                <ion-icon name="eye"></ion-icon><strong>{{post.viewCount}}</strong>
               </div>
             </div>
           </ion-col>

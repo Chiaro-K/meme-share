@@ -5,6 +5,7 @@ import {
   AlertController,
   IonicModule,
   LoadingController,
+  ModalController,
 } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { ImageService } from 'src/app/services/image.service';
@@ -14,6 +15,9 @@ import { MenuController } from '@ionic/angular';
 import { PostService } from 'src/app/services/posts/postService';
 import { IPost } from 'src/app/models/Post';
 import { HttpResponse } from '@capacitor/core';
+import { UserService } from 'src/app/services/posts/userService';
+import { IUser } from 'src/app/models/User';
+import { PostComponent } from 'src/app/components/post/post.component';
 
 @Component({
   selector: 'app-profile',
@@ -26,7 +30,8 @@ export class ProfilePage implements OnInit {
   @ViewChild(RouterOutlet) outlet: RouterOutlet | undefined;
 
   contentType = 'uploads';
-  profile: any;
+  profile?: any;
+  user?: IUser;
   posts?: any;
   postCount: number = 0;
   postViews: number = 0;
@@ -38,12 +43,19 @@ export class ProfilePage implements OnInit {
     private loadingController: LoadingController,
     private alertController: AlertController,
     private menu: MenuController,
-    private postService: PostService
+    private postService: PostService,
+    private userService: UserService,
+    private modalCtrl: ModalController,
   ) {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
 
       console.log('profile: ', this.profile);
+      this.userService.getUserByFireId(this.profile['uid']).then((res) => {
+        console.log('userRes: ', res);
+        this.user = res.data;
+      });
+
       this.postService.getUserUploads(this.profile['uid']).then((res) => {
         if (res) {
           this.posts = res.data;
@@ -64,17 +76,34 @@ export class ProfilePage implements OnInit {
     this.menu.close();
   }
 
+  async viewPost(post: IPost): Promise<void> {
+    const modal = await this.modalCtrl.create({
+      component: PostComponent,
+      componentProps: {
+        post: post,
+      },
+    });
+
+    // render modal inside active tab page, so tab switch is possible with opened modal
+    // const activeTabPage = document
+    //   .querySelector('ion-content')!
+    //   .closest('.ion-page');
+    // activeTabPage!.appendChild(modal);
+
+    await modal.present();
+  }
+
   postsCount(posts: any[]) {
     this.postCount = posts.length;
   }
 
   postsViews(posts: any[]) {
-    console.log("posts: ", posts);
+    console.log('posts: ', posts);
     this.postViews = posts.reduce(function (prev, curr) {
-      prev + curr.viewCount;
+      return prev + curr.viewCount;
     }, 0);
 
-    console.log("postViews: ", this.postViews);
+    console.log('postViews: ', this.postViews);
   }
 
   onSegmentChange() {

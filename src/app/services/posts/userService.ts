@@ -14,4 +14,13 @@ export class UserService {
     };
     return await CapacitorHttp.get(options);
   }
+
+  getUserByFireId = async (fireId: string) =>{
+    const options = {
+      url: `${this.url}Users/firebaseUser/${fireId}`,
+      //   headers: { 'X-Fake-Header': 'Fake-Value' },
+      //   params: { size: 'XL' },
+    };
+    return await CapacitorHttp.get(options);
+  }
 }

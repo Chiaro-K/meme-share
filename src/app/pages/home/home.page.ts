@@ -2,27 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  AnimationController,
   IonicModule,
   LoadingController,
 } from '@ionic/angular';
-import { NavController, MenuController } from '@ionic/angular';
-import { Router } from '@angular/router';
-
+import { NavController } from '@ionic/angular';
 import { PostService } from '../../services/posts/postService';
 import { HttpClientModule } from '@angular/common/http';
 import { IPost } from '../../models/Post';
 import { ModalController } from '@ionic/angular';
 import { PostComponent } from 'src/app/components/post/post.component';
-import { Photo } from '@capacitor/camera';
-import { Auth } from '@angular/fire/auth';
-import {
-  getDownloadURL,
-  ref,
-  Storage,
-  uploadString,
-} from '@angular/fire/storage';
-import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UploadComponent } from 'src/app/components/upload/upload.component';
 
@@ -41,13 +29,7 @@ export class HomePage implements OnInit {
   constructor(
     private postService: PostService,
     public navCtrl: NavController,
-    private menuCtrl: MenuController,
-    private router: Router,
     private modalCtrl: ModalController,
-    private animationCtrl: AnimationController,
-    private auth: Auth,
-    private firestore: Firestore,
-    private storage: Storage,
     private loadingController: LoadingController
   ) {}
 
@@ -56,7 +38,7 @@ export class HomePage implements OnInit {
     this.getPostTypes();
   }
 
-  onSegmentChange(){
+  onSegmentChange() {
     this.getPosts();
   }
 
@@ -74,29 +56,6 @@ export class HomePage implements OnInit {
         console.log('res', res);
         this.posts = res.data;
       });
-
-    //   this.posts = [
-    //     {
-    //       postId: 'c17c1350-808e-40ab-bbdd-8362b5a70600',
-    //       userId: 'd407a68b-85ff-4aaa-9f93-0f1784d810ec',
-    //       title: 'Test1',
-    //       description: 'Description blah blah',
-    //       imageUrl:
-    //         'https://repository-images.githubusercontent.com/260096455/47f1b200-8b2e-11ea-8fa1-ab106189aeb0',
-    //       tags: 'dog,meme,puppy',
-    //       postType: 2,
-    //     },
-    //     {
-    //       postId: '6a7ae9eb-76f5-4cc0-968c-2209c6c928f9',
-    //       userId: 'd407a68b-85ff-4aaa-9f93-0f1784d810ec',
-    //       title: 'Test2',
-    //       description: 'Another Description blah blah',
-    //       imageUrl:
-    //         'https://www.sheknows.com/wp-content/uploads/2018/08/wtsyliaw0pbyvlspt7mg.jpeg?w=600',
-    //       tags: 'dog,puppy',
-    //       postType: 2,
-    //     },
-    //   ];
   }
 
   async viewPost(post: IPost): Promise<void> {
@@ -114,9 +73,6 @@ export class HomePage implements OnInit {
     activeTabPage!.appendChild(modal);
 
     await modal.present();
-
-    // const data = await modal.onWillDismiss();
-    // console.log(data);
   }
 
   async uploadIsthombe() {
