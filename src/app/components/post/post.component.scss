@@ -1,47 +1,81 @@
 $spacing: 10px;
 
 .img-box {
-    height: $spacing * 5;
-    width: $spacing * 5;
-    border-radius: 50%;
-    overflow: hidden;
+  height: $spacing * 5;
+  width: $spacing * 5;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .clear-fab {
-    .button-native {
-        background: transparent;
-        box-shadow: none;
-    }
+  .button-native {
+    background: transparent;
+    box-shadow: none;
+  }
 }
 
 .usr-details,
+.profile,
 .img,
-.info {
-    display: flex;
+.info,
+.save {
+  display: flex;
 }
 
 .usr-details {
-    padding: $spacing;
+  padding: $spacing;
 }
 
+.save {
+  margin-left: auto;
+  font-size: 1.5rem;
+}
 .info {
-    flex-direction: column;
-    margin-left: 8px;
-    margin-top: $spacing/2;
+  flex-direction: column;
+  margin-left: 8px;
+  margin-top: $spacing/2;
 
-    label {
-        font-weight: 600;
-    }
+  label {
+    font-weight: 600;
+  }
 
-    span {
-        color: #919191;
-    }
+  span {
+    color: #919191;
+  }
 }
-
+img {
+  width: 100%;
+}
 .img {
-    flex-direction: row;
+  flex-direction: row;
 }
 
 .postInfo {
-    text-align: center;
+  text-align: left;
+  padding: 8px;
+}
+
+hr {
+  background: #c9c5c5;
+}
+ion-grid {
+  padding: 0;
+
+  ion-col {
+    padding: 0px 3px 20px 2px;
+    small {
+      margin-left: $spacing;
+    }
+
+    .ellipse {
+      float: right;
+      margin-right: $spacing;
+    }
+
+    .image-container {
+      background-size: cover;
+      min-height: 200px;
+      border-radius: $spacing;
+    }
+  }
 }

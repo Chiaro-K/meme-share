@@ -41,21 +41,45 @@
   </ion-fab>
 
   <ion-toolbar>
-    <img src="{{post.imageUrl}}" />
+    <img src="{{ post.imageUrl }}" />
   </ion-toolbar>
   <ion-toolbar>
-    <div class="usr-details" (click)="viewUser()">
-      <div class="img">
-        <img src="assets/images/user.png" class="img-box" />
+    <div class="usr-details">
+      <div class="profile" (click)="viewUser()">
+        <div class="img">
+          <img src="assets/images/user.png" class="img-box" />
+        </div>
+        <div class="info">
+          <label>{{user?.username}}</label>
+          <span>{{userPostCount}} Posts</span>
+        </div>
       </div>
-      <div class="info">
-        <label>Khanyiso</label>
-        <span>15 Posts</span>
+      <div class="save">
+        <ion-icon name="bookmark-outline"></ion-icon>
+        <!-- when saved
+        <ion-icon name="bookmark"></ion-icon> -->
       </div>
     </div>
   </ion-toolbar>
   <ion-toolbar class="postInfo">
-    <h2>{{post.title}}</h2>
-    <h6>{{post.description}}</h6>
+    <div>
+      <h2>{{ post?.title }}</h2>
+      <h6>{{ post?.description }}</h6>
+    </div>
+    <hr />
+    <h6>More like this</h6>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let post of posts">
+          <div
+            class="image-container"
+            [style.background-image]="'url(' + post.imageUrl + ')'"
+            (click)="viewPost(post);"
+          ></div>
+          <small>{{post.title}}</small>
+          <ion-icon class="ellipse" name="ellipsis-horizontal-outline"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-content>

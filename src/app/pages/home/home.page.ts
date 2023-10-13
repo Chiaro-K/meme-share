@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonicModule,
-  LoadingController,
-} from '@ionic/angular';
+import { IonicModule, LoadingController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { PostService } from '../../services/posts/postService';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,6 +10,7 @@ import { ModalController } from '@ionic/angular';
 import { PostComponent } from 'src/app/components/post/post.component';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UploadComponent } from 'src/app/components/upload/upload.component';
+import { Capitalize, LowerCase } from 'src/app/shared/stringUtils';
 
 @Component({
   selector: 'app-home',
@@ -50,12 +48,10 @@ export class HomePage implements OnInit {
   }
 
   getPosts() {
-    this.postService
-      .getAllPosts(this.capitalize(this.contentType))
-      .then((res) => {
-        console.log('res', res);
-        this.posts = res.data;
-      });
+    this.postService.getAllPosts(Capitalize(this.contentType)).then((res) => {
+      console.log('res', res);
+      this.posts = res.data;
+    });
   }
 
   async viewPost(post: IPost): Promise<void> {
@@ -64,6 +60,16 @@ export class HomePage implements OnInit {
       componentProps: {
         post: post,
       },
+    });
+
+    modal.onDidDismiss().then((res) => {
+      console.log('dismiss: ', res);
+
+      if (res.data) {
+        if (res.data['postId'] !== post.postId) {
+          this.viewPost(res.data);
+        }
+      }
     });
 
     // render modal inside active tab page, so tab switch is possible with opened modal
@@ -100,6 +106,10 @@ export class HomePage implements OnInit {
     }
   }
 
+  lowerCase(pt: string) {
+    return LowerCase(pt);
+  }
+
   // enterAnimation = (baseEl: HTMLElement) => {
   //   const root = baseEl.shadowRoot;
 
@@ -127,11 +137,4 @@ export class HomePage implements OnInit {
   // leaveAnimation = (baseEl: HTMLElement) => {
   //   return this.enterAnimation(baseEl).direction('reverse');
   // };
-
-  lowerCase(pt: string) {
-    return pt.toLowerCase();
-  }
-  capitalize(pt: string) {
-    return pt.charAt(0).toUpperCase() + pt.slice(1);
-  }
 }

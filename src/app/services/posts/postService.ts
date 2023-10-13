@@ -34,13 +34,13 @@ export class PostService {
     return await CapacitorHttp.get(options);
   };
 
-  getPostTypes = async () =>{
+  getPostTypes = async () => {
     const options = {
       url: `${this.url}Posts/postTypes`,
       headers: { 'Content-Type': 'application/json' },
     };
     return await CapacitorHttp.get(options);
-  }
+  };
 
   createPost = async (post: IAddPost) => {
     //TODO
@@ -49,10 +49,21 @@ export class PostService {
     const options = {
       headers: { 'Content-Type': 'application/json' },
       url: `${this.url}Posts`,
-      method: "POST",
-      data: post
+      method: 'POST',
+      data: post,
     };
 
     return await CapacitorHttp.post(options);
+  };
+
+  incrementPostView = async (postId: string) => {
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      url: `${this.url}Posts/increment-view-count`,
+      method: 'PATCH',
+      data: { postId: postId },
+    };
+
+    return await CapacitorHttp.patch(options);
   };
 }
