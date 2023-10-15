@@ -4,7 +4,7 @@
     <ion-searchbar></ion-searchbar>
   </ion-toolbar>
 
-  <ion-toolbar class="search-types">
+  <!-- <ion-toolbar class="search-types">
     <ion-title>
       <ion-segment [(ngModel)]="contentType" [scrollable]="true" value="images">
         <ion-segment-button value="images"> Images </ion-segment-button>
@@ -12,7 +12,7 @@
         <ion-segment-button value="videos"> Videos </ion-segment-button>
       </ion-segment>
     </ion-title>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -35,58 +35,17 @@
 
   <article class="most-popular" [ngSwitch]="contentType">
     <h6>Most Popular Now</h6>
-    <div class="grid" *ngSwitchCase="'images'">
+    <div
+      class="grid"
+      [style.grid-template-rows]="repeatRows"
+      [style.grid-template-columns]="repeatCols"
+    >
       <div
+        *ngFor="let post of posts"
         class="item"
-        style="
-          background-image: url(https://images.unsplash.com/photo-1439209306665-700c9bca794c?dpr=1&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=);
-        "
-      ></div>
-
-      <div
-        class="item"
-        style="
-          background-image: url(https://images.unsplash.com/photo-1466853817435-05b43fe45b39?dpr=1&auto=compress,format&fit=crop&w=1199&h=871&q=80&cs=tinysrgb&crop=);
-        "
-      ></div>
-
-      <div
-        class="item"
-        style="
-          background-image: url(https://images.unsplash.com/photo-1488572384981-eac03dfeb6b9?dpr=1&auto=compress,format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=);
-        "
-      ></div>
-
-      <div
-        class="item"
-        style="
-          background-image: url(https://images.unsplash.com/photo-1470091688026-38b51162c8df?dpr=1&auto=compress,format&fit=crop&w=1199&h=750&q=80&cs=tinysrgb&crop=);
-        "
-      ></div>
-
-      <div
-        class="item"
-        style="
-          background-image: url(https://images.unsplash.com/photo-1475139450941-3b6464b2dde3?dpr=1&auto=compress,format&fit=crop&w=1199&h=673&q=80&cs=tinysrgb&crop=);
-        "
+        [style.grid-row]="post.gridRow"
+        [style.background-image]="'url(' + post.imageUrl + ')'"
       ></div>
     </div>
-    <!-- <ion-grid *ngSwitchCase="'images'">
-      <ion-row>
-        <ion-col size="6" *ngFor="let image of [2,3,4,5]">
-          <div
-            class="image-container"
-            [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
-          ></div>
-          <small>Gif title</small>
-          <ion-icon
-            class="ellipse"
-            name="ellipsis-horizontal-outline"
-          ></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-grid> -->
-    <ion-grid *ngSwitchCase="'gifs'">GIFS</ion-grid>
-    <ion-grid *ngSwitchCase="'videos'">VIDEOS</ion-grid>
   </article>
 </ion-content>

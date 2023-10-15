@@ -44,7 +44,7 @@ export class PostService {
 
   createPost = async (post: IAddPost) => {
     //TODO
-    post.userId = 'AD230952-27D0-4E27-98C8-460D74BB6696';
+    post.userId = 'a7c232a9-8625-4beb-9719-e50162a6901a';
 
     const options = {
       headers: { 'Content-Type': 'application/json' },

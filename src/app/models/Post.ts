@@ -9,6 +9,7 @@ export interface IPost{
     description?: string,
     imageUrl?: string,
     tags?: string,
+    gridRow?: string
 }
 
 export interface IAddPost{
