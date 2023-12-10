@@ -66,6 +66,10 @@ export class PostComponent implements OnInit {
       });
   }
 
+  savePost(){
+    this.postService.savePost(this.post!.postId, )
+  }
+
   ngOnInit() {}
 
   close() {
