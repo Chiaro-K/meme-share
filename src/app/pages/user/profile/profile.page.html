@@ -9,10 +9,10 @@
       <ion-list-header>
         <ion-label>Profile</ion-label>
       </ion-list-header>
-      <ion-item>
+      <!-- <ion-item>
         <ion-icon name="settings-outline" slot="start"></ion-icon>
-        <ion-label>Settings</ion-label>
-      </ion-item>
+        <ion-label>Settings</ion-label> 
+      </ion-item> -->
       <ion-item>
         <ion-icon slot="start" name="log-out-outline"></ion-icon>
         <ion-label style="color: #e00404" (click)="logout()">Log Out</ion-label>
@@ -84,10 +84,11 @@
     <div [ngSwitch]="contentType">
       <ion-grid *ngSwitchCase="'saved'" id="profile-saved-content">
         <ion-row>
-          <ion-col size="12" *ngFor="let image of [1,2,3,4,5,6,1,1]">
+          <ion-col size="12" *ngFor="let post of savedPosts">
             <div
               class="saved-container"
-              [style.background-image]="'url(assets/images/img' + image + '.jpg)'"
+              (click)="viewPost(post);"
+              [style.background-image]="'url(' + post.imageUrl + ')'"
             ></div>
           </ion-col>
         </ion-row>
@@ -101,7 +102,8 @@
               (click)="viewPost(post);"
             >
               <div class="bottom-left">
-                <ion-icon name="eye"></ion-icon><strong>{{post.viewCount}}</strong>
+                <ion-icon name="eye"></ion-icon
+                ><strong>{{post.viewCount}}</strong>
               </div>
             </div>
           </ion-col>
