@@ -51,12 +51,12 @@ export class ProfilePage implements OnInit {
       this.profile = data;
 
       console.log('profile: ', this.profile);
-      this.userService.getUserByFireId(this.profile['uid']).then((res) => {
+      this.userService.getUserByFireId(this.profile['id']).then((res) => {
         console.log('userRes: ', res);
         this.user = res.data;
       });
 
-      this.postService.getUserUploads(this.profile['uid']).then((res) => {
+      this.postService.getUserUploads(this.profile['id']).then((res) => {
         if (res) {
           this.posts = res.data;
           this.postsCount(res.data);
@@ -110,9 +110,10 @@ export class ProfilePage implements OnInit {
     console.log('onSegmentChange');
 
     if (this.contentType === 'uploads' && this.posts && this.profile) {
+      console.log('profile: ', this.profile);
       console.log('uploads');
       this.postService
-        .getUserUploads(this.profile['uid'])
+        .getUserUploads(this.profile['id'])
         .then((res) => {
           this.posts = res.data;
         })

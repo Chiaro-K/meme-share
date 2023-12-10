@@ -14,6 +14,7 @@ import { IPost } from 'src/app/models/Post';
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class SearchPage implements OnInit {
+  searchText = '';
   contentType = 'trending';
   gridRow = [
     [1, 3],
@@ -33,38 +34,56 @@ export class SearchPage implements OnInit {
 
   ngOnInit() {}
 
+  closeSearch() {
+    this.getPosts();
+  }
+
+  search(e: any) {
+    const { value } = e.detail;
+    if (value) {
+      this.postService.searchPosts(value).then((res) => {
+        this.posts = res.data;
+        this.formatPosts();
+      });
+    } else {
+      this.getPosts();
+    }
+  }
+
   getPosts() {
     this.postService.getAllPosts(Capitalize(this.contentType)).then((res) => {
-      let count = 0;
-      let increment = 0;
-      let row = 1;
-
       this.posts = res.data;
-
-      this.posts.forEach((p, i) => {
-        if (i % 5 === 0 && i !== 0) {
-          increment = row * 5;
-          row++;
-        }
-        if (count === this.gridRow.length) {
-          count = 0;
-        }
-
-        let x = this.gridRow[count][0] + increment;
-
-        if ([0, 1].includes(count) && row !== 1) {
-          x -= 1;
-        }
-        const y = this.gridRow[count][1] + increment;
-
-        p.gridRow = `${x}/${y}`;
-        count++;
-
-        this.rows = y > this.rows ? y : this.rows;
-      });
-      this.repeatRows = `repeat(${Math.ceil(this.rows)}, 120px)`;
-
-      console.log('new posts: ', this.posts);
+      this.formatPosts();
     });
+  }
+
+  formatPosts() {
+    let count = 0;
+    let increment = 0;
+    let row = 1;
+    this.rows = 1;
+
+    this.posts.forEach((p, i) => {
+      if (i % 5 === 0 && i !== 0) {
+        increment = row * 5;
+        row++;
+      }
+      if (count === this.gridRow.length) {
+        count = 0;
+      }
+
+      let x = this.gridRow[count][0] + increment;
+
+      if ([0, 1].includes(count) && row !== 1) {
+        x -= 1;
+      }
+      const y = this.gridRow[count][1] + increment;
+
+      p.gridRow = `${x}/${y}`;
+      count++;
+
+      this.rows = y > this.rows ? y : this.rows;
+    });
+    this.repeatRows = `repeat(${Math.ceil(this.rows)}, 120px)`;
   }
 }

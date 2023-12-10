@@ -1,3 +1,4 @@
+import { user } from '@angular/fire/auth';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
 import { IAddPost } from 'src/app/models/Post';
 
@@ -33,6 +34,14 @@ export class PostService {
     };
     return await CapacitorHttp.get(options);
   };
+  
+  searchPosts = async (term: string) => {
+    const options = {
+      url: `${this.url}Posts/search/${term}`,
+      headers: { 'Content-Type': 'application/json' },
+    };
+    return await CapacitorHttp.get(options);
+  };
 
   getPostTypes = async () => {
     const options = {
@@ -62,6 +71,17 @@ export class PostService {
       url: `${this.url}Posts/increment-view-count`,
       method: 'PATCH',
       data: { postId: postId },
+    };
+
+    return await CapacitorHttp.patch(options);
+  };
+
+  savePost= async (postId: string, userId: string) => {
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      url: `${this.url}Posts/save-post`,
+      method: 'PATCH',
+      data: { postId: postId, userId: userId },
     };
 
     return await CapacitorHttp.patch(options);

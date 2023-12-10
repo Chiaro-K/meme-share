@@ -1,4 +1,8 @@
 $spacing: 5px;
+
+ion-header{
+  box-shadow: none;
+}
 @mixin leftRightPadding {
   padding: 0 ($spacing * 2) 0 ($spacing * 2);
 }

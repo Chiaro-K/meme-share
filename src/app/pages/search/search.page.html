@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="title">Search</ion-title>
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar [debounce]="500" (ionInput)="search($event)" (ionCancel)="closeSearch()"></ion-searchbar>
   </ion-toolbar>
 
   <!-- <ion-toolbar class="search-types">
@@ -16,22 +16,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <article class="quick-search">
+  <!-- <article class="quick-search">
     <div class="trending-search">
       <h6>Trending Searches</h6>
       <span><ion-icon name="trending-up-outline"></ion-icon>10 Past 4</span>
       <span><ion-icon name="trending-up-outline"></ion-icon>Inganekwane</span>
       <span><ion-icon name="trending-up-outline"></ion-icon>Obani la</span>
     </div>
-  </article>
-  <article class="recent-search">
-    <h6>Recent Searches</h6>
+  </article> -->
+  <!-- <article class="recent-search">
+    <h6>Your Recent Searches</h6>
     <div class="searches">
       <ion-badge><ion-icon name="search"></ion-icon>Test1</ion-badge>
       <ion-badge><ion-icon name="search"></ion-icon>Test2</ion-badge>
       <ion-badge><ion-icon name="search"></ion-icon>Test3</ion-badge>
     </div>
-  </article>
+  </article> -->
 
   <article class="most-popular" [ngSwitch]="contentType">
     <h6>Most Popular Now</h6>
