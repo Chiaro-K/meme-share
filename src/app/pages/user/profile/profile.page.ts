@@ -33,6 +33,7 @@ export class ProfilePage implements OnInit {
   profile?: any;
   user?: IUser;
   posts?: any;
+  savedPosts?: any;
   postCount: number = 0;
   postViews: number = 0;
 
@@ -45,7 +46,7 @@ export class ProfilePage implements OnInit {
     private menu: MenuController,
     private postService: PostService,
     private userService: UserService,
-    private modalCtrl: ModalController,
+    private modalCtrl: ModalController
   ) {
     this.avatarService.getUserProfile().subscribe((data) => {
       this.profile = data;
@@ -54,6 +55,14 @@ export class ProfilePage implements OnInit {
       this.userService.getUserByFireId(this.profile['id']).then((res) => {
         console.log('userRes: ', res);
         this.user = res.data;
+
+        this.postService.getSavedPosts(this.user!.userId).then((res) => {
+          if (res) {
+            this.savedPosts = res.data;
+          }
+        });
+
+        localStorage.setItem('userId', this.user!.userId);
       });
 
       this.postService.getUserUploads(this.profile['id']).then((res) => {
@@ -120,6 +129,12 @@ export class ProfilePage implements OnInit {
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      this.postService.getSavedPosts(this.user!.userId).then((res) => {
+        if (res) {
+          this.savedPosts = res.data;
+        }
+      });
     }
   }
 

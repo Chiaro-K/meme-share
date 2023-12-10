@@ -43,6 +43,14 @@ export class PostService {
     return await CapacitorHttp.get(options);
   };
 
+  getSavedPosts = async (userId: string) => {
+    const options = {
+      url: `${this.url}Posts/savedPosts/${userId}`,
+      headers: { 'Content-Type': 'application/json' },
+    };
+    return await CapacitorHttp.get(options);
+  };
+
   getPostTypes = async () => {
     const options = {
       url: `${this.url}Posts/postTypes`,
@@ -80,10 +88,10 @@ export class PostService {
     const options = {
       headers: { 'Content-Type': 'application/json' },
       url: `${this.url}Posts/save-post`,
-      method: 'PATCH',
+      method: 'POST',
       data: { postId: postId, userId: userId },
     };
 
-    return await CapacitorHttp.patch(options);
+    return await CapacitorHttp.post(options);
   };
 }

@@ -66,8 +66,11 @@ export class PostComponent implements OnInit {
       });
   }
 
-  savePost(){
-    this.postService.savePost(this.post!.postId, )
+  savePost() {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      this.postService.savePost(this.post!.postId, userId);
+    }
   }
 
   ngOnInit() {}
