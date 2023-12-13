@@ -62,7 +62,7 @@ export class ProfilePage implements OnInit {
           }
         });
 
-        localStorage.setItem('userId', this.user!.userId);
+        localStorage.setItem('uId', this.user!.userId);
       });
 
       this.postService.getUserUploads(this.profile['id']).then((res) => {

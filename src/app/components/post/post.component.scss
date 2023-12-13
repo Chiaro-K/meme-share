@@ -7,11 +7,13 @@ $spacing: 10px;
   overflow: hidden;
 }
 
-.clear-fab {
-  .button-native {
+#close::part(native){
+  background: transparent;
+}
+
+.clear-fab::part(native) {
     background: transparent;
     box-shadow: none;
-  }
 }
 
 .usr-details,

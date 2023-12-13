@@ -28,6 +28,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher id="refresher" slot="fixed" (ionRefresh)="getPosts($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let post of posts">

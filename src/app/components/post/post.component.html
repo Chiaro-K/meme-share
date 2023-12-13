@@ -18,7 +18,7 @@
 </ion-content> -->
 <ion-content>
   <ion-fab slot="fixed" vertical="top" horizontal="start">
-    <ion-fab-button (click)="close()">
+    <ion-fab-button id="close" (click)="close()">
       <ion-icon name="chevron-back"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -55,9 +55,8 @@
         </div>
       </div>
       <div class="save">
-        <ion-icon name="bookmark-outline" (click)="savePost()"></ion-icon>
-        <!-- when saved
-        <ion-icon name="bookmark"></ion-icon> -->
+        <ion-icon *ngIf="!isSaved" name="bookmark-outline" (click)="savePost()"></ion-icon>
+        <ion-icon *ngIf="isSaved" name="bookmark" (click)="unSavePost()"></ion-icon>
       </div>
     </div>
   </ion-toolbar>

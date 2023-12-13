@@ -19,7 +19,9 @@ export class PostComponent implements OnInit {
   post?: IPost;
   posts?: IPost[];
   user: any;
+  currentUserId?: string | null;
   userPostCount: number = 0;
+  isSaved: boolean = false;
 
   constructor(
     public modalCtrl: ModalController,
@@ -29,6 +31,14 @@ export class PostComponent implements OnInit {
     private userService: UserService
   ) {
     this.post = this.navParams.get('post');
+
+    this.currentUserId = localStorage.getItem('uId');
+    if (this.currentUserId)
+      this.postService
+        .getSavedPost(this.post.postId, this.currentUserId)
+        .then((res) => {
+          this.isSaved = res.data;
+        });
 
     this.post = this.post;
     this.getPosts();
@@ -66,10 +76,31 @@ export class PostComponent implements OnInit {
       });
   }
 
+  getSavedPost(postId: string, userId: string) {
+    this.postService.getSavedPost(postId, userId).then((res) => {
+      this.isSaved = res.data;
+    });
+  }
+
   savePost() {
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.postService.savePost(this.post!.postId, userId);
+    if (this.currentUserId) {
+      this.postService
+        .savePost(this.post!.postId, this.currentUserId)
+        .then(() => {
+          this.getSavedPost(this.post!.postId, this.currentUserId!);
+        });
+    } else {
+      this.router.navigateByUrl('/signup', { replaceUrl: true });
+    }
+  }
+
+  unSavePost() {
+    if (this.currentUserId) {
+      this.postService
+        .unsavePost(this.post!.postId, this.currentUserId)
+        .then(() => {
+          this.getSavedPost(this.post!.postId, this.currentUserId!);
+        });
     }
   }
 

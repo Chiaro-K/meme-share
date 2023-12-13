@@ -47,10 +47,14 @@ export class HomePage implements OnInit {
     });
   }
 
-  getPosts() {
+  getPosts(event?: any) {
     this.postService.getAllPosts(Capitalize(this.contentType)).then((res) => {
       console.log('res', res);
       this.posts = res.data;
+
+      if (event) {
+        event.target.complete();
+      }
     });
   }
 

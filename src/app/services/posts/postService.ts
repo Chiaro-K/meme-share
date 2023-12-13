@@ -45,12 +45,20 @@ export class PostService {
 
   getSavedPosts = async (userId: string) => {
     const options = {
-      url: `${this.url}Posts/savedPosts/${userId}`,
+      url: `${this.url}Posts/saved-posts/${userId}`,
       headers: { 'Content-Type': 'application/json' },
     };
     return await CapacitorHttp.get(options);
   };
 
+  getSavedPost= async (postId: string, userId: string) => {
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      url: `${this.url}Posts/saved-post/${postId}/${userId}`,
+    };
+
+    return await CapacitorHttp.get(options);
+  };
   getPostTypes = async () => {
     const options = {
       url: `${this.url}Posts/postTypes`,
@@ -93,5 +101,16 @@ export class PostService {
     };
 
     return await CapacitorHttp.post(options);
+  };
+  
+  unsavePost= async (postId: string, userId: string) => {
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      url: `${this.url}Posts/unsave-post`,
+      method: 'DELETE',
+      data: { postId: postId, userId: userId },
+    };
+
+    return await CapacitorHttp.delete(options);
   };
 }
