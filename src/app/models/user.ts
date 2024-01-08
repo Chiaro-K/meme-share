@@ -9,3 +9,8 @@ export interface IUser {
    lastName: string;
    username: string;
 }
+
+export interface IAddUser {
+   username: string;
+   firebaseUserId: string;
+}

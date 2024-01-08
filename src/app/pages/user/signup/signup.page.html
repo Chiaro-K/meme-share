@@ -15,7 +15,7 @@
 
 <ion-content [fullscreen]="true" class="bg-color" [ngSwitch]="contentType">
   <ion-card>
-    <form [formGroup]="ValidationFormUser" (ngSubmit)="login()">
+    <form [formGroup]="ValidationFormUser">
       <ion-card-content>
         <div class="login" *ngSwitchCase="'login'">
           <ion-item>
@@ -42,21 +42,16 @@
         </div>
 
         <div class="signup" *ngSwitchCase="'signup'">
-          <!-- <ion-item>
-            <ion-input name="names" type="text" placeholder="FullName">
-              <ion-icon name="person-outline"></ion-icon>
-            </ion-input>
-          </ion-item> -->
           <ion-item>
-            <ion-input name="username" type="text" placeholder="Username">
+            <ion-input name="username" formControlName="username" type="text" placeholder="Username">
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input name="email" type="text" placeholder="Email">
+            <ion-input name="email" formControlName="email" type="text" placeholder="Email">
             </ion-input>
           </ion-item>
           <ion-item>
-            <ion-input name="password" type="password" placeholder="Password">
+            <ion-input name="password" formControlName="password" type="password" placeholder="Password">
             </ion-input>
           </ion-item>
           <ion-item>
@@ -64,6 +59,7 @@
               name="confirmPassword"
               type="password"
               placeholder="Confirm password"
+              formControlName="confirmPassword"
             >
             </ion-input>
           </ion-item>
@@ -71,7 +67,7 @@
         <div class="confirm-signin">
           <div class="sign-btn-wrap">
             <ion-button
-              (click)="login()"
+              (click)="submit()"
               shape="round"
               type="submit"
               fill="solid"

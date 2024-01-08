@@ -71,6 +71,12 @@ export class SignupPage implements OnInit {
 
   ngOnInit() {}
 
+  submit() {
+    if (this.contentType == 'login') {
+      this.login();
+    } else this.signUp();
+  }
+
   login() {
     console.log('LOGGIN IN!');
     const userForm = this.ValidationFormUser.value;
@@ -79,7 +85,28 @@ export class SignupPage implements OnInit {
     this.auth
       .SignIn(userForm.email, userForm.password)
       .then(async (res) => {
-        console.log('RES', res);
+        console.log('CREATE RES', res);
+        // const alert = await this.alertCtrl.create({
+        //   header: 'Alert',
+        //   message: res || '',
+        //   buttons: ['OK'],
+        // });
+        // await alert.present();
+
+        this.loading = false;
+      })
+      .catch((err) => {});
+  }
+
+  signUp() {
+    console.log('Sign Up!');
+    const userForm = this.ValidationFormUser.value;
+    console.log('USERFORM: ', userForm);
+    if (userForm.email && userForm.password) this.loading = true;
+    this.auth
+      .SignUp(userForm.email, userForm.password)
+      .then(async (res) => {
+        console.log('SIGNIN RES', res);
         // const alert = await this.alertCtrl.create({
         //   header: 'Alert',
         //   message: res || '',

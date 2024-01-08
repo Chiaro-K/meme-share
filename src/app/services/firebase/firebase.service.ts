@@ -72,6 +72,7 @@ export class FirebaseService {
   }
 
   SignUp(email: string, password: string) {
+    console.log("signing up!")
     return this.afAuth.createUserWithEmailAndPassword(email, password).then((result) => {
       this.SetUserData(result.user);
       this.afAuth.authState.subscribe((user) => {

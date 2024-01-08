@@ -1,4 +1,5 @@
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
+import { IAddUser } from 'src/app/models/User';
 
 export class UserService {
   // use config
@@ -23,4 +24,15 @@ export class UserService {
     };
     return await CapacitorHttp.get(options);
   }
+
+  createUser = async (user: IAddUser) => {
+    const options = {
+      headers: { 'Content-Type': 'application/json' },
+      url: `${this.url}Users`,
+      method: 'POST',
+      data: user,
+    };
+
+    return await CapacitorHttp.post(options);
+  };
 }
