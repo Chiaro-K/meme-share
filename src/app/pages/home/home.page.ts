@@ -11,6 +11,7 @@ import { PostComponent } from 'src/app/components/post/post.component';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { UploadComponent } from 'src/app/components/upload/upload.component';
 import { Capitalize, LowerCase } from 'src/app/shared/stringUtils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,8 @@ export class HomePage implements OnInit {
     private postService: PostService,
     public navCtrl: NavController,
     private modalCtrl: ModalController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -86,27 +88,33 @@ export class HomePage implements OnInit {
   }
 
   async uploadIsthombe() {
-    const media = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Photos, // Camera, Photos or Prompt!
-    });
-
-    if (media) {
-      console.log('media', media);
-      const loading = await this.loadingController.create();
-      await loading.present();
-
-      loading.dismiss();
-
-      const modal = await this.modalCtrl.create({
-        component: UploadComponent,
-        componentProps: {
-          media: media,
-        },
+    //check if user is logged in
+    var user = JSON.parse(localStorage.getItem('user')!);
+    if (user && user.email) {
+      const media = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+        source: CameraSource.Photos, // Camera, Photos or Prompt!
       });
-      await modal.present();
+
+      if (media) {
+        console.log('media', media);
+        const loading = await this.loadingController.create();
+        await loading.present();
+
+        loading.dismiss();
+
+        const modal = await this.modalCtrl.create({
+          component: UploadComponent,
+          componentProps: {
+            media: media,
+          },
+        });
+        await modal.present();
+      }
+    } else {
+      this.router.navigateByUrl('tabs/signup', { replaceUrl: true });
     }
   }
 
